@@ -1,0 +1,43 @@
+* {
+  -webkit-user-select: none;
+}
+body {
+  padding: 0;
+  margin: 0;
+  background-color: var(--page-background);
+}
+.wrapper {
+  font-family: var(--main-body-text);
+  color: var(--diffused);
+  background: fixed no-repeat url('../images/manhole.png');
+  background-position: top 90px center;
+  background-size: 50%;
+}
+.wrapper.js-mobile {
+  background-size: contain;
+  background-position: top 130px center;
+}
+.page-wrapper {
+  max-width: var(--page-max-width);
+  min-height: 90vh;
+  margin: 0 auto;
+  padding-top: calc(var(--xxlarge) + var(--xlarge));
+  padding-bottom: var(--xlarge);
+}
+.page-wrapper.js-mobile {
+  max-width: var(--mobile-page-max-width);
+}
+li {
+  list-style: none;
+}
+.external-link:any-link {
+  color: var(--yellow);
+  text-decoration: none;
+}
+.external-link:hover {
+  color: var(--orange);
+  text-decoration: underline;
+}
+.fine-print {
+  font-size: var(--fine-print);
+}

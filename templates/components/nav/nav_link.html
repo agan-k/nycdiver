@@ -1,0 +1,21 @@
+<span>
+  <a 
+  href="{% url url_name %}" 
+  class="nav__nav-link {% if request.path == request_path %} nav__nav-link--active {% endif %}">
+    {{label}}
+    {% if user.is_authenticated == False and url_name == 'event-list-user' %}
+      <span class="fine-print">
+      </span>
+    {% else %}
+      {% if num_events %}
+        <span class="fine-print">
+          ({{num_events}})
+        </span>
+      {% elif num_events < 1 %}
+        <span class="fine-print">
+          (0)
+        </span>
+      {% endif %}
+    {% endif %}
+  </a>
+</span>

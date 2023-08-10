@@ -1,0 +1,13 @@
+<div class="search-result responsive">
+  <div class="search-result__content">
+    {% if search_results %}
+      {% if num_search_results > 1 %}
+        Showing {{num_search_results}} search results for " {{q}} ".
+      {% else %}
+        Showing {{num_search_results}} search result for " {{q}} ".
+      {% endif %}
+    {% else %}
+      There are no result for " {{q}} ".
+    {% endif %}
+  </div>
+</div>

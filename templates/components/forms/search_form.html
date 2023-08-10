@@ -1,0 +1,5 @@
+<form class="search-form responsive" action="{% url 'search-events' %}" method="POST">
+  {% csrf_token %}
+  <img class="search-icon" src="/static/images/search.png" alt="search icon">
+  <input id="CancelSearch" class="search-form__input" type="search" placeholder="serach events..." name='q'>
+</form>

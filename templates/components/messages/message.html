@@ -1,0 +1,35 @@
+<div class="message message--{{message_type}} responsive">
+  <span class="icon icon--{{message_type}}">
+    {% if message_type == 'success' %} 
+    &#10003;&#10003;
+    {% elif message_type == 'error' %} 
+    &#9888; 
+    {% elif message_type == 'warning' %} 
+    &#9888; 
+    {% elif message_type == 'info' %} 
+    &#9432; 
+    {% endif %}
+  </span>
+  {% if q %}
+    <div class="message__content">
+      {% if search_results %}
+        {% if num_search_results > 1 %}
+          Showing {{num_search_results}} search results for "{{q}}".
+        {% else %}
+          Showing {{num_search_results}} search result for "{{q}}".
+        {% endif %}
+      {% else %}
+        There are no result for "{{q}}".
+      {% endif %}
+    </div>
+  {% else %}
+    <span class="message__content">
+      {% if message_type == 'info' %}
+        {{content}}<br><br>
+        Old events will be deleted automatically after one week.
+      {% else %}
+        {{content}}
+      {% endif %}
+    </span>
+  {% endif %}
+</div>

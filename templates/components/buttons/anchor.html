@@ -1,0 +1,15 @@
+{% if event_id %}
+  <a 
+    href="{% url path_name event_id %}"
+    class="button anchor button--{{action}} button--{{button_variation}} anchor--{{shape}} {{event_id}}">
+    {{label}}
+  </a>
+{% elif next %}
+  <a href="{% url path_name %}?next={{next}}" class="button anchor button--{{action}} button--{{button_variation}}">
+    {{label}}
+  </a>
+{% else %}
+  <a href="{% url path_name %}" class="button anchor button--{{action}} button--{{button_variation}}">
+    {{label}}
+  </a>
+{% endif %}

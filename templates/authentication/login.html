@@ -1,0 +1,18 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+  <div class="form-wrapper responsive">
+    {% include 'components/forms/form_info.html' with heading='Login' sub_heading='Login to manage your listings.' %}
+    
+    <form action="" method=POST class="form-login">
+      {% csrf_token %}
+      <label for="username">Username:</label>
+      <input class="form-input" required type="text" name="username" autofocus>
+      <label for="password">Password:</label>
+      <input class="form-input" required type="password" name="password">
+      {% include 'components/buttons/button.html' with type='submit' label='Login' button_variation='secondary' %}
+      <p class="form-login__option">or create account</p>
+      {% include 'components/buttons/anchor.html' with label='Register' path_name='register' button_variation='primary' %}
+    </form>
+  </div>
+{% endblock content %}
+

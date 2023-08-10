@@ -1,0 +1,32 @@
+.header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: transparent;
+  font-size: var(--heading-xsmall);
+  z-index: 0;
+}
+.header__top {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: var(--page-max-width);
+  background: var(--page-background);
+  margin: 0 auto;
+  background: var(--page-background);
+}
+.header__top.js-mobile {
+  width: var(--mobile-page-max-width);
+}
+.header__user-info {
+  flex: 1 1 15%;
+  display: flex;
+  align-items: center;
+  padding-left: var(--small);
+  padding-right: var(--small);
+  background: var(--page-background);
+  font-size: var(--body-text-small);
+  color: var(--green);
+}

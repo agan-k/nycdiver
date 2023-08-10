@@ -1,0 +1,51 @@
+.form-input.address-borough {
+  width: 100%;
+  height: var(--large);
+  background-color: var(--light-gray);
+  margin-bottom: var(--medium);
+}
+label[for=id_cover_amount] {
+  display: none;
+}
+label[for=id_cover_amount].show {
+  display: inline;
+}
+.description {
+  width: 98%;
+  height: 90px;
+  background-color: var(--light-gray);
+  margin-bottom: var(--xlarge);
+  resize: none;
+}
+.id_cover_charge_0, 
+.id_cover_charge_1 {
+  display: inline;
+}
+.cover-charge {
+  display: flex;
+  justify-content: flex-end;
+}
+input.cover-charge {
+  height: var(--medium);
+  width: var(--medium);
+  margin: 0;
+}
+.cover-charge > * {
+  width: 27%;
+  padding-bottom: var(--medium);
+}
+.cover-charge:nth-child(2) {
+  display: inline;
+  margin-left: auto;
+}
+.cover-amount{
+  display: none;
+}
+.cover-amount.show{
+  display: block;
+  width: 50%;
+  display: flex;
+  justify-items: flex-end;
+  margin-bottom: var(--medium);
+  margin-left: auto;
+}

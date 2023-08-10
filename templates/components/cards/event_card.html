@@ -1,0 +1,49 @@
+<div class="event-card event-card--{{event_list}} {% if event.staged_for_deletion %} disabled {% endif %}" id="{{event.id}}">
+  <div class="event-card__header">
+    {% if request.path == '/events_today/' %}
+      <div class="event-card__date">Today, {{event.date}}</div>
+    {% else %}
+      <div class="event-card__date">{{ event.date|date:"D" }}, {{event.date}}</div>
+    {% endif %}
+    <div>{{event.time_start}}&nbsp;-&nbsp;{{event.time_end}}</div>
+    <div class="event-card__heading">{{event.headliner}}</div>
+    <div class="event-card__heading--small">@{{event.venue}}</div>
+  </div>
+  <div class="event-card__body">
+    <div>
+      {% if event.cover_amount %}
+        $&nbsp;{{event.cover_amount}}
+      {% else %}
+      $&nbsp;NO COVER
+      {% endif %}
+    </div>
+    <div class="event-card__address">
+      {{event.address_street}}<br>
+      {{event.address_borough}}, NY &nbsp;
+      {{event.address_zip}}<br>
+      {% if event.phone %}
+      phone:&nbsp;
+      <span class="event-card__phone">{{event.phone}}</span>
+      <br>
+      {% endif %}
+      {% if event.map_link %}
+        <a class="external-link" href="{{event.map_link}}">map</a>
+      {% endif %}
+    </div>
+    <div class="event-card__description">{{event.description}}</div>
+  </div>
+  <div class="event-card__footer">
+    {% if user.is_authenticated%}
+      {% if request.path == '/my_events/' %}
+        <div class="event-card__btn-container">
+          {% if event.staged_for_deletion %}
+            {% include 'components/buttons/anchor.html' with label='&#8634;' action='delete' path_name='toggle-user-event-delete' event_id=event.id button_variation='secondary' shape='circle' %}
+          {% else %}
+              {% include 'components/buttons/anchor.html' with label='✏️' action='update' path_name='event-update' event_id=event.id button_variation='primary' shape='circle' %}
+              {% include 'components/buttons/anchor.html' with label='🗑' action='delete' path_name='toggle-user-event-delete' event_id=event.id button_variation='danger' shape='circle' %}
+          {% endif %}
+        </div>
+      {% endif %}
+    {% endif %}
+  </div>
+</div>

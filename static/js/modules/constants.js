@@ -1,0 +1,12 @@
+export const BODY = document.querySelector('body');
+export const FIELD_CONTENT_PHONE = document.querySelectorAll('.event-card__phone');
+export const NUM_OF_EXPIRED_EVENTS = document.currentScript.dataset.expired;
+export const EVENT_LISTINGS = document.querySelectorAll('.event-card--today, .event-card--week, .event-card--upcoming, .event-card--search-results');
+export const COVER_CHARGE_INPUTS = document.querySelectorAll('.cover-charge');
+export const COVER_AMOUNT_INPUT = document.getElementById('id_cover_amount');
+export const COVER_AMOUNT_LABEL = document.querySelectorAll('label[for=id_cover_amount]');
+export const DESCRIPTION_PARAGRAPH_SELECTOR = '.event-card__description';
+export const NAV_ROW_ELEMENTS = document.querySelectorAll('.nav__nav-row');
+export const RESPONSIVE_ELEMENTS = document.querySelectorAll('.responsive');
+export const COPYRIGHT_ELEMENT = document.getElementById('copyright');
+export const MESSAGES_INFO = document.querySelectorAll('.message--info');

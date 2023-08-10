@@ -1,0 +1,26 @@
+{% extends 'base_layout.html' %}
+{% block content %}
+  {% if q %}
+    {% for result in  search_results %}
+      {% include 'components/cards/event_card.html' with event=result event_list='search-results' %}
+    {% endfor %}
+  {% endif %}
+  {% if todays_events %}
+    {% for event in todays_events %}
+      {% include 'components/cards/event_card.html' with event=event event_list='today' %}
+    {% endfor %}
+  {% elif weeks_events %}
+    {% for event in weeks_events %}
+      {% include 'components/cards/event_card.html' with event=event event_list='week' %}
+    {% endfor %}
+  {% elif upcoming_events %}
+    {% for event in upcoming_events %}
+      {% include 'components/cards/event_card.html' with event=event event_list='upcoming' %}
+    {% endfor %}
+  {% elif user_events %}
+    {% for event in user_events %}
+      {% include 'components/cards/event_card.html' with event=event event_list='user' %}
+    {% endfor %}
+  {% endif %}
+{% endblock content %}
+

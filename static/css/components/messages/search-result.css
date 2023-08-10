@@ -1,0 +1,17 @@
+.search-result {
+  width: calc(var(--page-max-width) - var(--xlarge));
+  margin: 0 auto;
+  background-color: var(--low-key);
+  border-radius: 0 0 var(--medium) var(--medium);
+  box-shadow: var(--edge);
+  color: var(--dark);
+  font-size: var(--body-text-small);
+  font-style: italic;
+}
+.search-result.js-mobile {
+  width: calc(var(--mobile-page-max-width) - var(--small));
+  width: var(--mobile-page-max-width);
+}
+.search-result__content {
+  padding: var(--medium);
+}

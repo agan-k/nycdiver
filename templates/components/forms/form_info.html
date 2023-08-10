@@ -1,0 +1,32 @@
+<div class="form-info">
+  <h1 class="form-info__heading">{{heading}}</h1>
+  {% if sub_heading %}
+    <span class="form-info__sub-heading">{{sub_heading}}</span>
+  {% endif %}
+  <div class="form-info__body">
+    {% if required_fields == 'true' %}
+      <span class="form-info__asterisk asterisk--required-fields">*</span>
+      <span><em>required fields</em></span>
+    {% endif %}
+    <span class="form-info__form-requirements">
+      {% if form_requirements.username %}
+        <span class="form-info__asterisk asterisk--form-requirements">*</span>
+        <ul class="form-info__form-requirements-list">
+          {% for requirement in form_requirements.username %}
+          <li>{{requirement}}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </span>
+    <span class="form-info__form-requirements">
+      {% if form_requirements.password %}
+        <span class="form-info__asterisk asterisk--form-requirements">**</span>
+        <ul class="form-info__form-requirements-list">
+          {% for requirement in form_requirements.password %}
+            <li>{{requirement}}</li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </span>
+  </div>
+</div>

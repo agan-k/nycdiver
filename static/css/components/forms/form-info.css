@@ -1,0 +1,19 @@
+.form-info {
+  margin-bottom: var(--medium);
+}
+.form-info__heading {
+  font-size: var(--heading-large);
+  margin: var(--small) 0 var(--small) 0;
+}
+.form-info__body {
+  font-size: var(--body-text-small);
+  font-style: italic;
+}
+.form-info__form-requirements {
+  display: flex;
+  justify-content: flex-start;
+}
+.form-info__form-requirements-list {
+  margin-top: 0;
+  padding-left: var(--small);
+}

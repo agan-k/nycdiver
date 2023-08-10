@@ -1,0 +1,52 @@
+:root {
+  
+  /* colors */
+  --diffused:  #d4d4d6;
+  --light-gray:  #a0a0a1;
+  --dark:  rgb(50, 50, 50);
+  --disabled: rgb(66, 66, 66);
+  --yellow:  rgb(221, 197, 60);
+  --blue:  rgb(67, 125, 251);
+  --red:  rgb(196, 35, 35);
+  --background: #2B2B2B;
+  --page-background: #252525;
+  --background-transparent: rgba(47, 47, 47, 0.7);
+  --page-background-transparent: rgba(37, 37, 37, 0.7);
+  --green: rgb(0, 96, 0);
+  --orange: rgb(192, 112, 0);
+  --low-key: #999999;
+
+  /* fonts */
+  --main-body-text: Helvetica, Arial, sans-serif;
+
+  /* font sizes */
+  --heading-large: 32px;
+  --heading-medium: 28px;
+  --heading-small: 24px;
+  --heading-xsmall: 20px;
+
+  --body-text-large: 18px;
+  --body-text: 16px;
+  --body-text-small: 14px;
+  --body-text-xsmall: 12px;
+  --fine-print: 10px;
+
+  /* space */
+  --xsmall: 4px;
+  --small: 8px;
+  --medium: 16px;
+  --large: 32px;
+  --xlarge: 64px;
+  --xxlarge: 128px;
+  --page-max-width: 400px;
+  --mobile-page-max-width: 350px;
+
+  /* borders */
+  --minimal: 1px solid var(--dark);
+  /* box-shadow */
+  --floating: 0 10px 20px var(--background-transparent);
+  --edge: 0 2px 3px var(--background);
+  --edge-dark: 0 2px 2px var(--page-background);
+  /* text-shadow */
+  --disabled-text: 0 -1px 3px black;
+}
