@@ -7,7 +7,12 @@
       {% endif %}
       {% include 'components/forms/search_form.html' with event_list='search_results' %}
     </div>
+
     {% include 'components/nav/nav.html' %}
+
+    {% if auth_message %}
+      {% include 'components/messages/message.html' with message_type='success' content=auth_message %}
+    {% endif %}
     {% if q %}
       {% include 'components/messages/message.html' with message_type='search' search_results=search_results num_search_results=num_search_results q=q %}
     {% endif %} 

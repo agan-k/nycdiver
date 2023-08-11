@@ -47,7 +47,7 @@
 .icon--info {
   color: var(--dark);
 }
-.search-icon {
+.messages__search-icon {
   width: var(--large);
   margin-right: var(--small);
 }

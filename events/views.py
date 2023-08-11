@@ -3,8 +3,9 @@ from django.db.models import Q
 from .models import Event
 from .forms import EventForm
 from django.contrib import messages
+from .utils import ATTACH_AUTH_MESSAGE
 from .data import *
-from .manage_events import (
+from .manage_data import (
     STAGE_EXPIRED_EVENTS_FOR_DELETION,
     TOGGLE_STAGE_USER_EVENT_DELETE,
     DELETE_STAGED_EVENTS,
@@ -45,6 +46,7 @@ def home(request):
         'num_user_events': NUM_USER_EVENTS(request),
         'num_expired_events': NUM_EXPIRED_EVENTS(),
     }
+    ATTACH_AUTH_MESSAGE(request, context)
     return render(request, 'home.html', context=context)
 
 def event_list_today_view(request):
@@ -57,6 +59,7 @@ def event_list_today_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
+    ATTACH_AUTH_MESSAGE(request, context)
     return render(request, 'home.html', context=context)
 
 def event_list_week_view(request):
@@ -69,6 +72,7 @@ def event_list_week_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
+    ATTACH_AUTH_MESSAGE(request, context)
     return render(request, 'home.html', context=context)
 
 def event_list_upcoming_view(request):
@@ -81,6 +85,7 @@ def event_list_upcoming_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
+    ATTACH_AUTH_MESSAGE(request, context)
     return render(request, 'home.html', context=context)
 
 
@@ -94,6 +99,7 @@ def event_list_user_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
+    ATTACH_AUTH_MESSAGE(request, context)
 
     num_old_user_events = NUM_USER_EVENTS_STAGED_FOR_DELETION(request)
     has_old_user_events = False
@@ -111,6 +117,7 @@ def event_list_user_view(request):
     context['old_user_events_count'] = old_user_events_count
 
     if request.user.is_authenticated:
+      # ATTACH_AUTH_MESSAGE(request, context)
       if NUM_USER_EVENTS(request) < 1: return redirect('/event_add/')
       return render(request, 'home.html', context=context)
     else:
@@ -133,6 +140,7 @@ def add_event(request):
         form = EventForm(initial={'owner': request.user})
     context['form'] = form
     if request.user.is_authenticated:
+      ATTACH_AUTH_MESSAGE(request, context)
       return render(request, 'events/event_add.html', context=context)
     else:
       return redirect('/users/login_user?next=/event_add')
@@ -154,7 +162,7 @@ def update_event(request, event_id):
     return render(request, 'events/event_update.html', context=context)
 
 def toggle_user_event_delete(request, event_id):
-    TOGGLE_STAGE_USER_EVENT_DELETE(request=request, event_id=event_id)
+    TOGGLE_STAGE_USER_EVENT_DELETE(request, event_id)
     event = Event.objects.get(pk=event_id)
     if event.date < EVENT_EXPARATION_DATE:
       return redirect(f'/event_update/{event_id}')

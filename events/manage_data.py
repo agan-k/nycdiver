@@ -1,5 +1,3 @@
-from django.shortcuts import redirect
-from datetime import date, timedelta
 from .data import EXPIRED_EVENTS, EVENTS_STAGED_FOR_DELETION, EVENT_DELETION_DATE
 from .models import Event
 
