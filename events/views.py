@@ -22,7 +22,8 @@ def search_events_view(request):
         search_results = Event.objects.filter(
             Q(headliner__contains=q) | 
             Q(venue__contains=q) | 
-            Q(description__contains=q)).values()
+            Q(description__contains=q) |
+            Q(address_borough__contains=q)).values()
         if search_results.count() == 0:
             search_results = None
             context['num_search_results'] = 0
