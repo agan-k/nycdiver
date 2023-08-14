@@ -12,14 +12,14 @@ import setForScreenWidth from "./setForScreenWidth";
 import toggleOpenNavigation from "./toggleOpenNavigation";
 import setBgImagePosition from "./setBgImagePosition";
 import formatText from "./formatText";
-import hideTemporaryMessages from "./hideTemporaryMessages";
+import displayMessages from "./displayMessages";
 
 setForScreenWidth();
 setBgImagePosition();
 getCopyrightYear();
 onChange(displayCoverAmountInput);
 displayCoverAmountInput();
-hideTemporaryMessages();
+displayMessages();
 toggleOpenNavigation();
 toggleExpandListings();
 denoteRequiredFormFields();

@@ -14,7 +14,7 @@
       {% include 'components/messages/message.html' with message_type='success' content=auth_message %}
     {% endif %}
     {% if q %}
-      {% include 'components/messages/message.html' with message_type='search' search_results=search_results num_search_results=num_search_results q=q %}
+      {% include 'components/messages/message.html' with message_type='search' content=search_results_message %}
     {% endif %} 
     {% if messages %}
       {% for message in messages %}
@@ -22,9 +22,9 @@
       {% endfor %}
     {% endif %}
     {% if has_old_user_events %}
-      {% include 'components/messages/message.html' with message_type='info' content=old_user_events_count %}
-  {% endif %}
-  {% if form.errors %}
-    {% include 'components/messages/message.html' with message_type='error' content='There was an problem with the form. Please check the error below.' %}
-  {% endif %}
+      {% include 'components/messages/message.html' with message_type='info' content=old_user_events_message %}
+    {% endif %}
+    {% if form.errors %}
+      {% include 'components/messages/message.html' with message_type='error' content='There was an problem with the form. Please check the error below.' %}
+    {% endif %}
   </header>

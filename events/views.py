@@ -28,8 +28,13 @@ def search_events_view(request):
         if search_results.count() == 0:
             search_results = None
             context['num_search_results'] = 0
+            context['search_results_message'] = 'There are no results for ' + f'"{q}."'
         else:
             context['num_search_results'] = search_results.count()
+            if search_results.count() > 1:
+              context['search_results_message'] = 'Showing ' + f'{search_results.count()}' + ' results for ' + f'"{q}."'
+            else:
+               context['search_results_message'] = 'Showing 1 result for ' + f'{q}.'
         context['q'] = q
         context['search_results'] = search_results
         return render(request, 'home.html', context=context)
@@ -59,7 +64,6 @@ def event_list_today_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
-    ATTACH_AUTH_MESSAGE(request, context)
     return render(request, 'home.html', context=context)
 
 def event_list_week_view(request):
@@ -72,7 +76,6 @@ def event_list_week_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
-    ATTACH_AUTH_MESSAGE(request, context)
     return render(request, 'home.html', context=context)
 
 def event_list_upcoming_view(request):
@@ -85,7 +88,6 @@ def event_list_upcoming_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
-    ATTACH_AUTH_MESSAGE(request, context)
     return render(request, 'home.html', context=context)
 
 
@@ -107,17 +109,19 @@ def event_list_user_view(request):
 
     if num_old_user_events > 0:
         has_old_user_events = True
-        if num_old_user_events < 2: 
+        if has_old_user_events and num_old_user_events > 1: 
             old_user_events_count = f'There is {num_old_user_events} old event.'
-        else: 
+            context['old_user_events_message'] = f'There is {num_old_user_events} old event. Old events will be deleted automatically after one week.'
+        elif has_old_user_events and num_old_user_events < 2: 
             old_user_events_count = f'''
             There are {num_old_user_events} old events.'''
+            context['old_user_events_message'] = f'There is 1 old event. Old events will be deleted automatically after one week.'
         
     context['has_old_user_events'] = has_old_user_events
+    context['num_old_user_events'] = num_old_user_events
     context['old_user_events_count'] = old_user_events_count
 
     if request.user.is_authenticated:
-      # ATTACH_AUTH_MESSAGE(request, context)
       if NUM_USER_EVENTS(request) < 1: return redirect('/event_add/')
       return render(request, 'home.html', context=context)
     else:

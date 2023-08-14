@@ -9,4 +9,5 @@ export const DESCRIPTION_PARAGRAPH_SELECTOR = '.event-card__description';
 export const NAV_ROW_ELEMENTS = document.querySelectorAll('.nav__nav-row');
 export const RESPONSIVE_ELEMENTS = document.querySelectorAll('.responsive');
 export const COPYRIGHT_ELEMENT = document.getElementById('copyright');
+export const MESSAGES = document.querySelectorAll('.message');
 export const MESSAGES_TEMPORARY = document.querySelectorAll('.message--info, .message--success');
