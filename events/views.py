@@ -3,7 +3,11 @@ from django.db.models import Q
 from .models import Event
 from .forms import EventForm
 from django.contrib import messages
-from .utils import ATTACH_AUTH_MESSAGE, ATTACH_OLD_USER_EVENTS_MESSAGE
+from .utils import (
+    ATTACH_AUTH_MESSAGE, 
+    ATTACH_OLD_USER_EVENTS_MESSAGE, 
+    ATTACH_SEARCH_RESULTS_MESSAGE, 
+) 
 from .data import *
 from .manage_data import (
     STAGE_EXPIRED_EVENTS_FOR_DELETION,
@@ -19,24 +23,13 @@ def search_events_view(request):
         'num_user_events': NUM_USER_EVENTS(request),
     }
     if request.method == 'POST':
-        q = request.POST.get('q')
+        search_request = request.POST.get('search_request')
         search_results = Event.objects.filter(
-            Q(headliner__contains=q) | 
-            Q(venue__contains=q) | 
-            Q(description__contains=q) |
-            Q(address_borough__contains=q)).values()
-        if search_results.count() == 0:
-            search_results = None
-            context['num_search_results'] = 0
-            context['search_results_message'] = 'There are no results for ' + f'"{q}."'
-        else:
-            context['num_search_results'] = search_results.count()
-            if search_results.count() > 1:
-              context['search_results_message'] = 'Showing ' + f'{search_results.count()}' + ' results for ' + f'"{q}."'
-            else:
-               context['search_results_message'] = 'Showing 1 result for ' + f'{q}.'
-        context['q'] = q
-        context['search_results'] = search_results
+            Q(headliner__contains=search_request) | 
+            Q(venue__contains=search_request) | 
+            Q(description__contains=search_request) |
+            Q(address_borough__contains=search_request)).values()
+        ATTACH_SEARCH_RESULTS_MESSAGE(search_results, search_request, context)
         return render(request, 'home.html', context=context)
     elif request.method == 'GET':
         return render(request, 'home.html', context=context)
@@ -105,7 +98,7 @@ def event_list_user_view(request):
 
     num_old_user_events = NUM_USER_EVENTS_STAGED_FOR_DELETION(request)
     ATTACH_OLD_USER_EVENTS_MESSAGE(num_old_user_events, context)
-    
+
     if request.user.is_authenticated:
       if NUM_USER_EVENTS(request) < 1: return redirect('/event_add/')
       return render(request, 'home.html', context=context)

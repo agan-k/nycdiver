@@ -13,7 +13,7 @@
     {% if auth_message %}
       {% include 'components/messages/message.html' with message_type='success' content=auth_message %}
     {% endif %}
-    {% if q %}
+    {% if search_request %}
       {% include 'components/messages/message.html' with message_type='search' content=search_results_message %}
     {% endif %} 
     {% if messages %}

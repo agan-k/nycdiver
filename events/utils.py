@@ -17,5 +17,20 @@ def attach_old_user_events_message(num_old_user_events, context):
             automatically after one week.
             '''
           
+def attach_search_results_message(search_results, search_request, context):
+    if search_results.count() == 0:
+        search_results = None
+        context['num_search_results'] = 0
+        context['search_results_message'] = 'There are no results for ' + f'"{search_request}."'
+    else:
+        context['num_search_results'] = search_results.count()
+        if search_results.count() > 1:
+          context['search_results_message'] = 'Showing ' + f'{search_results.count()}' + ' results for ' + f'"{search_request}."'
+        else:
+          context['search_results_message'] = 'Showing 1 result for ' + f'"{search_request}."'
+    context['search_results'] = search_results
+    context['search_request'] = search_request
+          
+ATTACH_SEARCH_RESULTS_MESSAGE = lambda search_results, search_request, context : attach_search_results_message(search_results, search_request, context)
 ATTACH_OLD_USER_EVENTS_MESSAGE = lambda old_user_events, context: attach_old_user_events_message(old_user_events, context)
 ATTACH_AUTH_MESSAGE = lambda request, context: attach_auth_message(request, context)
