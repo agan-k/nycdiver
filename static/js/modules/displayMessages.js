@@ -23,7 +23,7 @@ export default function displayMessages() {
     if (isTempMessage) {
       setTimeout(() => {
         m.classList.remove('js-show');
-      }, 4000);
+      }, 2500);
     }
   });
 }

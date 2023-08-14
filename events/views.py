@@ -3,7 +3,7 @@ from django.db.models import Q
 from .models import Event
 from .forms import EventForm
 from django.contrib import messages
-from .utils import ATTACH_AUTH_MESSAGE
+from .utils import ATTACH_AUTH_MESSAGE, ATTACH_OLD_USER_EVENTS_MESSAGE
 from .data import *
 from .manage_data import (
     STAGE_EXPIRED_EVENTS_FOR_DELETION,
@@ -104,23 +104,8 @@ def event_list_user_view(request):
     ATTACH_AUTH_MESSAGE(request, context)
 
     num_old_user_events = NUM_USER_EVENTS_STAGED_FOR_DELETION(request)
-    has_old_user_events = False
-    old_user_events_count = None
-
-    if num_old_user_events > 0:
-        has_old_user_events = True
-        if has_old_user_events and num_old_user_events > 1: 
-            old_user_events_count = f'There is {num_old_user_events} old event.'
-            context['old_user_events_message'] = f'There is {num_old_user_events} old event. Old events will be deleted automatically after one week.'
-        elif has_old_user_events and num_old_user_events < 2: 
-            old_user_events_count = f'''
-            There are {num_old_user_events} old events.'''
-            context['old_user_events_message'] = f'There is 1 old event. Old events will be deleted automatically after one week.'
-        
-    context['has_old_user_events'] = has_old_user_events
-    context['num_old_user_events'] = num_old_user_events
-    context['old_user_events_count'] = old_user_events_count
-
+    ATTACH_OLD_USER_EVENTS_MESSAGE(num_old_user_events, context)
+    
     if request.user.is_authenticated:
       if NUM_USER_EVENTS(request) < 1: return redirect('/event_add/')
       return render(request, 'home.html', context=context)

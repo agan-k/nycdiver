@@ -21,7 +21,7 @@
         {% include 'components/messages/message.html' with  message_type=message.tags content=message %}
       {% endfor %}
     {% endif %}
-    {% if has_old_user_events %}
+    {% if old_user_events_message %}
       {% include 'components/messages/message.html' with message_type='info' content=old_user_events_message %}
     {% endif %}
     {% if form.errors %}
