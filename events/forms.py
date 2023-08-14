@@ -49,10 +49,20 @@ class EventForm(ModelForm):
         date = cleaned_data.get('date')
         time_start = cleaned_data.get('time_start')
         time_end = cleaned_data.get('time_end')
+        map_link = cleaned_data.get('map_link')
+
+        if 'httpss://' in map_link:
+            print(True)
+        else:
+            print(False)
+              
+        print('here: ', map_link)
 
         if date < date.today():
             self.add_error('date', 'Invalid date - Event listing in the past')
         if time_end < time_start:
             self.add_error('time_end', 'Invalid time - End Time before Start Time')
+        if 'https://' not in map_link and 'http://' not in map_link:
+            self.add_error('map_link', 'Invalid map URL - URL should start with https://')
 
         return cleaned_data
