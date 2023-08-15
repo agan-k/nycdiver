@@ -38,6 +38,10 @@ li {
   color: var(--orange);
   text-decoration: underline;
 }
+.external-link.disabled {
+  color: var(--disabled);
+  pointer-events: none;
+}
 .fine-print {
   font-size: var(--fine-print);
 }

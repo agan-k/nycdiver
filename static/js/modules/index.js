@@ -13,6 +13,7 @@ import toggleOpenNavigation from "./toggleOpenNavigation";
 import setBgImagePosition from "./setBgImagePosition";
 import formatText from "./formatText";
 import displayMessages from "./displayMessages";
+import disableExternalLinks from "./disableExternalLinks";
 
 setForScreenWidth();
 setBgImagePosition();
@@ -20,6 +21,7 @@ getCopyrightYear();
 onChange(displayCoverAmountInput);
 displayCoverAmountInput();
 displayMessages();
+disableExternalLinks();
 toggleOpenNavigation();
 toggleExpandListings();
 denoteRequiredFormFields();

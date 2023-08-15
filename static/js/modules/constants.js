@@ -11,3 +11,4 @@ export const RESPONSIVE_ELEMENTS = document.querySelectorAll('.responsive');
 export const COPYRIGHT_ELEMENT = document.getElementById('copyright');
 export const MESSAGES = document.querySelectorAll('.message');
 export const MESSAGES_TEMPORARY = document.querySelectorAll('.message--info, .message--success');
+export const EXTERNAL_LINKS = document.querySelectorAll('.external-link');
