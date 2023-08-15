@@ -9,7 +9,7 @@ class Event(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for Event')
     staged_for_deletion = models.BooleanField(default=False)
     owner = models.CharField('', max_length=50)
-    headliner = models.CharField('artist/band:', max_length=50)
+    headliner = models.CharField('name:', max_length=50)
     date = models.DateField('pick date:')
     time_start = models.TimeField('from:')
     time_end = models.TimeField('to:')
