@@ -2,14 +2,9 @@
 {% block content %}
   <div class="form-wrapper responsive">
     {% if user.is_authenticated %}
-        {% include 'components/forms/form_info.html' with heading='Add event listing' required_fields='true' %}
-          <form action="" class="form-event-add-or-update" method=POST>
-            {% csrf_token %}
-            {{ form }}
-            {% include 'components/buttons/button.html' with type='submit' label='Submit' button_variation='secondary' %}
-            <br><br>
-            {% include 'components/buttons/anchor.html' with  label='Cancel' button_variation='primary' path_name='event-list-user' %}
-          </form>
+      {% include 'components/forms/form_info.html' with heading='Add event listing' required_fields='true' %}
+      <br><br>
+      {% include 'components/forms/form_event_add.html' %}
     {% else %}
       <p class="form-login__option">Please login to add a listing.</p>
       {% include 'components/buttons/anchor.html' with label='Login' path_name='login' next=request.path button_variation='primary' %}

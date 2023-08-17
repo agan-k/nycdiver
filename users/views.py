@@ -11,7 +11,6 @@ from events.data import (
 
 def login_user(request):
     next = request.GET.get('next')
-    print('here:', next)
     if next:
         redirect_page = next + '/?loggedin'
     else:
@@ -60,7 +59,6 @@ def register_user(request):
     if request.method == 'POST':
         form = RegistrationForm(request.POST)
         context['form'] = form
-        context['fruit'] = 'banana'
         if form.is_valid():
             form.save()
             username = form.cleaned_data['username']
