@@ -113,13 +113,16 @@ def add_event(request):
         'num_user_events': NUM_USER_EVENTS(request), 
     }
     if request.method == 'POST':
-        form = EventForm(request.POST)
+        event = Event(owner=request.user)
+        form = EventForm(request.POST, instance=event)
+        context['form'] = form
         if form.is_valid():
             form.save()
             messages.success(request, ('Listing added successfully.'))
             return redirect('event-list-user')
     elif request.method == 'GET':
         form = EventForm(initial={'owner': request.user})
+        # form = EventForm()
     context['form'] = form
     if request.user.is_authenticated:
       ATTACH_AUTH_MESSAGE(request, context)

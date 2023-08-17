@@ -1,4 +1,8 @@
 <form action="" class="form-event-add-or-update" method="POST">
+  {% csrf_token %}
+  {% if form.errors %}
+    {{form.errors}}
+  {% endif %}
   <div>
     {% for field in form.visible_fields %}
       {% if field.name == 'headliner' or field.name == 'venue'%}
@@ -26,6 +30,7 @@
         <div>
           {{field.label_tag}}
           {{field}}
+          {{field.errors}}
         </div>
         {% comment %} <div>
         </div> {% endcomment %}

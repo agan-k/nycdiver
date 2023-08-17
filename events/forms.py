@@ -1,18 +1,12 @@
 from django import forms
 from django.forms import ModelForm
-from django.core.exceptions import ValidationError
-from django.utils.translation import gettext_lazy as _
-
-
 from .models import Event
-import datetime
 
 
 class EventForm(ModelForm):
     class Meta:
         model = Event
         fields = (
-            'owner', 
             'headliner', 
             'venue', 
             'cover_charge', 
@@ -28,7 +22,6 @@ class EventForm(ModelForm):
             'description',
         )
         widgets = {
-            'owner': forms.TextInput(attrs={'type': 'hidden'}),
             'headliner': forms.TextInput(attrs={'class': 'form-input'}),
             'venue': forms.TextInput(attrs={'class': 'form-input'}),
             'cover_charge': forms.RadioSelect(attrs={'class': 'cover-charge', 'onchange': 'displayCoverAmountInput(this.value);'}),
@@ -49,20 +42,17 @@ class EventForm(ModelForm):
         date = cleaned_data.get('date')
         time_start = cleaned_data.get('time_start')
         time_end = cleaned_data.get('time_end')
+        address_zip = cleaned_data.get('address_zip')
         map_link = cleaned_data.get('map_link')
-
-        if 'httpss://' in map_link:
-            print(True)
-        else:
-            print(False)
-              
-        print('here: ', map_link)
 
         if date < date.today():
             self.add_error('date', 'Invalid date - Event listing in the past')
         if time_end < time_start:
             self.add_error('time_end', 'Invalid time - End Time before Start Time')
-        if 'https://' not in map_link and 'http://' not in map_link:
-            self.add_error('map_link', 'Invalid map URL - URL should start with https://')
-
+        if address_zip is not None:
+            if len(address_zip) < 5 or not address_zip.isdigit():
+                self.add_error('address_zip', 'Invalid ZIP code - Enter 5-digit number')
+        if map_link is not None:
+            if 'https://' not in map_link and 'http://' not in map_link:
+                self.add_error('map_link', 'Invalid map URL - URL should start with https://')
         return cleaned_data

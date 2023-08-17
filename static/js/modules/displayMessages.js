@@ -5,11 +5,12 @@ export default function displayMessages() {
 
   MESSAGES.forEach((m, index) => {
     const isTempMessage = Boolean(
-    m.classList.contains('message--info') || 
-    m.classList.contains('message--success'));
+      m.classList.contains('message--info') || 
+      m.classList.contains('message--success'));
     const hasMultipleMessages = Boolean(MESSAGES.length > 1);
-
-    m.classList.add('js-show');
+    setTimeout(() => {
+      m.classList.add('js-show');
+    }, 100)
 
     if (isTempMessage && hasMultipleMessages) {
       if (index !== MESSAGES.length - 1) {
@@ -18,12 +19,12 @@ export default function displayMessages() {
       setTimeout(() => {
         m.classList.remove('js-show');
         m.classList.remove('js-merge');
-      }, 4000);
+      }, 4500);
     };
     if (isTempMessage) {
       setTimeout(() => {
         m.classList.remove('js-show');
-      }, 2500);
+      }, 3000);
     }
   });
 }
