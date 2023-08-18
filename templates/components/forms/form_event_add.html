@@ -1,8 +1,5 @@
 <form action="" class="form-event-add-or-update" method="POST">
   {% csrf_token %}
-  {% if form.errors %}
-    {{form.errors}}
-  {% endif %}
   <div>
     {% for field in form.visible_fields %}
       {% if field.name == 'headliner' or field.name == 'venue'%}
@@ -13,94 +10,88 @@
       {% endif %}
     {% endfor %}
   </div>
-  <div>
-    {% for field in form.visible_fields %}
-      {% if field.name == 'cover_charge' or field.name == 'cover_amount'%}
-        <div>
-          {{field.label_tag}}
-          {{field}}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-  <br><br><br>
-  <div>
-    {% for field in form.visible_fields %}
-      {% if field.name == 'date'%}
-        <div>
-          {{field.label_tag}}
-          {{field}}
-          {{field.errors}}
-        </div>
-        {% comment %} <div>
-        </div> {% endcomment %}
-      {% endif %}
-    {% endfor %}
-  </div>
+  <!-- cover charge: & cover amount:-->
+  {% for field in form.visible_fields %}
+    {% if field.name == 'cover_charge' or field.name == 'cover_amount'%}
+      {{field.label_tag}}
+      {{field.errors}}
+      {{field}}
+    {% endif %}
+  {% endfor %}
+  <br><br>
+  <!-- date: -->
+  {% for field in form.visible_fields %}
+    {% if field.name == 'date'%}
+      {{field.errors}}
+      {{field.label_tag}}
+      {{field}}
+    {% endif %}
+  {% endfor %}
+  <!-- start time: & end time:-->
+  {% for field in form.visible_fields %}
+    {% if field.name == 'time_start' or field.name == 'time_end' %}
+      {{field.errors}}
+    {% endif %}
+  {% endfor %}
   <div class="flex-box--space-between">
     {% for field in form.visible_fields %}
       {% if field.name == 'time_start' or field.name == 'time_end' %}
         <div class="flex-item">
-          <div>
-            {{field.label_tag}}
-            {{field}}
-          </div>
-          {% comment %} <div>
-          </div> {% endcomment %}
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div>
-  <br><br><br>
-  <div>
-    {% for field in form.visible_fields %}
-      {% if field.name == 'address_street' %}
-        <div>
           {{field.label_tag}}
           {{field}}
         </div>
       {% endif %}
     {% endfor %}
   </div>
+  <br><br>
+  <!-- street address: -->
+  {% for field in form.visible_fields %}
+    {% if field.name == 'address_street' %}
+      {{field.errors}}
+      {{field.label_tag}}
+      {{field}}
+    {% endif %}
+  {% endfor %}
+  <!-- borough: & zipCode: -->
+  {% for field in form.visible_fields %}
+    {% if field.name == 'address_borough' or field.name == 'address_zip' %}
+      {{field.errors}}
+    {% endif %}
+  {% endfor %}
   <div class="flex-box--space-between">
     {% for field in form.visible_fields %}
       {% if field.name == 'address_borough' or field.name == 'address_zip' %}
-        <div>
-          <div>
-            {{field.label_tag}}
-            {{field}}
-          </div>
+        <div class="flex-item">
+          {{field.label_tag}}
+          {{field}}
         </div>
       {% endif %}
     {% endfor %}
   </div>
+  <!-- phone: & map link: -->
+  {% for field in form.visible_fields %}
+    {% if field.name == 'map_link' or field.name == 'phone' %}
+      {{field.errors}}
+    {% endif %}
+  {% endfor %}
   <div class="flex-box--space-between">
     {% for field in form.visible_fields %}
       {% if field.name == 'map_link' or field.name == 'phone' %}
         <div class="flex-item">
-          <div>
-            {{field.label_tag}}
-          </div>
-          <div>
-            {{field}}
-          </div>
-        </div>
-      {% endif %}
-    {% endfor %}
-  </div> 
-  <br><br><br>
-  <div>
-    {% for field in form.visible_fields %}
-      {% if field.name == 'description' %}
-        <div>
           {{field.label_tag}}
-        </div>
-        <div>
           {{field}}
         </div>
       {% endif %}
     {% endfor %}
-  </div>
+  </div> 
+  <br><br>
+  <!-- description -->
+  {% for field in form.visible_fields %}
+    {% if field.name == 'description' %}
+      {{field.label_tag}}
+      {{field}}
+    {% endif %}
+  {% endfor %}
   {% include 'components/buttons/button.html' with type='submit' label='Submit' button_variation='secondary' %}
   <br><br>
   {% include 'components/buttons/anchor.html' with  label='Cancel' button_variation='primary' path_name='event-list-user' %}

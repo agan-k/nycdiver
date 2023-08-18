@@ -8,7 +8,7 @@
 }
 form input {
   font-size: var(--body-text-large);
-  width: 99%;
+  width: 100%;
   height: var(--large);
   background-color: var(--light-gray);
   margin-bottom: var(--medium);
@@ -30,8 +30,9 @@ form label {
   text-transform: lowercase;
   font-style: italic;
 }
-form .errorlist{
-  margin-top: var(--small);
+form ul.errorlist{
+  margin: 0;
+  margin-top: var(--medium);
   font-size: var(--body-text-small);
   font-style: italic;
   padding: 0 0 var(--medium) var(--large);

@@ -1,6 +1,6 @@
 .form-input.address-borough {
-  width: 100%;
-  height: var(--large);
+  height: calc(var(--large) + 2px);
+  width: 104%;
   background-color: var(--light-gray);
   margin-bottom: var(--medium);
 }
