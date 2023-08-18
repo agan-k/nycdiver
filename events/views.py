@@ -122,7 +122,6 @@ def add_event(request):
             return redirect('event-list-user')
     elif request.method == 'GET':
         form = EventForm(initial={'owner': request.user})
-        # form = EventForm()
     context['form'] = form
     if request.user.is_authenticated:
       ATTACH_AUTH_MESSAGE(request, context)
