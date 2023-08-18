@@ -2,15 +2,8 @@
 {% block content %}
   <div class="form-wrapper responsive">
     {% include 'components/forms/form_info.html' with heading='Update event listing' required_fields='true' %}
-    <form action="" method=POST class='form-event-add-or-update'>
-      {% csrf_token %}
-      {{ form }}
-      <br/>
-      {% include 'components/buttons/button.html' with type='submit' label='Update' button_variation='secondary' %}
-      <br>
-      <br>
-      {% include 'components/buttons/anchor.html' with  label='Cancel' button_variation='primary' path_name='event-list-user' %}
-    </form>
+    <br><br>
+      {% include 'components/forms/form_event_add_update.html' %}
   </div>
 {% endblock content %}
 

@@ -53,8 +53,8 @@ class EventForm(ModelForm):
         if cover_amount is not None:
             if not cover_amount.isdigit():
                 self.add_error('cover_amount', 'Invalid amount - Enter enter amount number')
-        if address_zip is not None:
-            if len(address_zip) < 5 or not address_zip.isdigit():
+        if address_zip is not '':
+            if not address_zip.isdigit():
                 self.add_error('address_zip', 'Invalid ZIP code - Enter 5-digit number')
         if map_link is not None:
             if 'https://' not in map_link and 'http://' not in map_link:
