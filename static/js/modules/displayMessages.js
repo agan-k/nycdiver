@@ -10,7 +10,7 @@ export default function displayMessages() {
     const hasMultipleMessages = Boolean(MESSAGES.length > 1);
     setTimeout(() => {
       m.classList.add('js-show');
-    }, 100)
+    }, 1000)
 
     if (isTempMessage && hasMultipleMessages) {
       if (index !== MESSAGES.length - 1) {
@@ -19,12 +19,12 @@ export default function displayMessages() {
       setTimeout(() => {
         m.classList.remove('js-show');
         m.classList.remove('js-merge');
-      }, 4500);
+      }, 7000);
     };
-    if (isTempMessage) {
+    if (isTempMessage && !hasMultipleMessages) {
       setTimeout(() => {
         m.classList.remove('js-show');
-      }, 3000);
+      }, 5000);
     }
   });
 }

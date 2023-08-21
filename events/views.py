@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.db.models import Q
 from .models import Event
 from .forms import EventForm
-from django.contrib import messages
 from .utils import (
-    ATTACH_AUTH_MESSAGE, 
+    ATTACH_AUTH_MESSAGE,
+    ATTACH_POSTED_MESSAGE,
     ATTACH_OLD_USER_EVENTS_MESSAGE, 
     ATTACH_SEARCH_RESULTS_MESSAGE, 
 ) 
@@ -95,6 +95,7 @@ def event_list_user_view(request):
         'num_user_events': NUM_USER_EVENTS(request), 
     }
     ATTACH_AUTH_MESSAGE(request, context)
+    ATTACH_POSTED_MESSAGE(request, context)
 
     num_old_user_events = NUM_USER_EVENTS_STAGED_FOR_DELETION(request)
     ATTACH_OLD_USER_EVENTS_MESSAGE(num_old_user_events, context)
@@ -118,8 +119,7 @@ def add_event(request):
         context['form'] = form
         if form.is_valid():
             form.save()
-            messages.success(request, ('Listing added successfully.'))
-            return redirect('event-list-user')
+            return redirect('/my_events/?added')
     elif request.method == 'GET':
         form = EventForm(initial={'owner': request.user})
     context['form'] = form
@@ -141,7 +141,7 @@ def update_event(request, event_id):
     context['event'] = event
     if form.is_valid():
         form.save()
-        return redirect('event-list-user')
+        return redirect('/my_events/?updated')
     context['form'] = form
     return render(request, 'events/event_update.html', context=context)
 

@@ -13,6 +13,9 @@
     {% if auth_message %}
       {% include 'components/messages/message.html' with message_type='success' content=auth_message %}
     {% endif %}
+    {% if posted_message %}
+      {% include 'components/messages/message.html' with message_type='success' content=posted_message %}
+    {% endif %}
     {% if search_request %}
       {% include 'components/messages/message.html' with message_type='search' content=search_results_message %}
     {% endif %} 

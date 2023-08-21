@@ -3,6 +3,11 @@ def attach_auth_message(request, context):
         context['auth_message'] = f'You are logged in as {request.user}.'
       elif 'loggedout' in request.GET:
         context['auth_message'] = f'Logged out successfully.'
+def attach_posted_message(request, context):
+      if 'added' in request.GET:
+        context['posted_message'] = f'Event added successfully.'
+      elif 'updated' in request.GET:
+        context['posted_message'] = f'Event updated successfully.'
 
 def attach_old_user_events_message(num_old_user_events, context):
    if num_old_user_events > 0:
@@ -34,3 +39,4 @@ def attach_search_results_message(search_results, search_request, context):
 ATTACH_SEARCH_RESULTS_MESSAGE = lambda search_results, search_request, context : attach_search_results_message(search_results, search_request, context)
 ATTACH_OLD_USER_EVENTS_MESSAGE = lambda old_user_events, context: attach_old_user_events_message(old_user_events, context)
 ATTACH_AUTH_MESSAGE = lambda request, context: attach_auth_message(request, context)
+ATTACH_POSTED_MESSAGE = lambda request, context: attach_posted_message(request, context)
