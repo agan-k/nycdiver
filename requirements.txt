@@ -1,0 +1,10 @@
+asgiref==3.7.2
+beautifulsoup4==4.12.2
+dj-database-url==2.1.0
+Django==4.2.4
+django-clearcache==1.2.1
+django-livereload==1.7
+django-livereload-server==0.4
+gunicorn==21.2.0
+psycopg2-binary==2.9.7
+whitenoise==6.5.0
