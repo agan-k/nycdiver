@@ -1,4 +1,8 @@
-
+.form-input.date-select,
+.form-iput.time-select,
+.form-input.address-borough {
+  color: black;
+}
 .form-input.address-borough {
   height: calc(var(--large) + 2px);
   width: 104%;

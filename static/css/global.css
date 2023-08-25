@@ -13,7 +13,7 @@ body {
 .page-background {
   background: fixed no-repeat url('../images/manhole.png');
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: center var(--xxlarge);
   height: 100vh;
   width: 100vw;
   position: fixed;
