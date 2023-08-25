@@ -24,7 +24,6 @@ body {
 }
 .page-wrapper {
   max-width: var(--page-max-width);
-  min-height: 90vh;
   margin: 0 auto;
   padding-top: calc(var(--xxlarge) + var(--xlarge));
   padding-bottom: var(--xlarge);
