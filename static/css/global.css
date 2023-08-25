@@ -9,13 +9,18 @@ body {
 .wrapper {
   font-family: var(--main-body-text);
   color: var(--diffused);
-  background: fixed no-repeat url('../images/manhole.png');
-  background-position: top 90px center;
-  background-size: 50%;
 }
-.wrapper.js-mobile {
-  background-size: contain;
-  background-position: top 130px center;
+.page-background {
+  background: fixed no-repeat url('../images/manhole.png');
+  background-repeat: no-repeat;
+  background-position: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  z-index: -2;
+}
+.page-background.js-mobile {
+  background-size: 100%;
 }
 .page-wrapper {
   max-width: var(--page-max-width);
