@@ -30,3 +30,7 @@
   font-size: var(--body-text-small);
   color: var(--green);
 }
+.header__user-icon {
+  width: calc(var(--medium) + var(--small));
+  margin-right: var(--small);
+}

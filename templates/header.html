@@ -2,7 +2,7 @@
     <div class="header__top responsive">
       {% if user.is_authenticated %}
         <span class="header__user-info">
-          <img class="search-icon" src="/static/images/user.png" alt="user icon">{{user}}
+          <img class="header__user-icon" src="/static/images/user.png" alt="user icon">{{user}}
         </span>
       {% endif %}
       {% include 'components/forms/search_form.html' with event_list='search_results' %}

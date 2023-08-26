@@ -4,19 +4,13 @@
 body {
   padding: 0;
   margin: 0;
-  
-  background: fixed no-repeat url('../images/manhole.png');
-  background-repeat: no-repeat;
-  background-position: center var(--xxlarge);
-  background-size: var(--page-max-width);
-
   background-color: var(--page-background);
 }
 .wrapper {
   font-family: var(--main-body-text);
   color: var(--diffused);
 }
-/* .page-background {
+.page-background {
   background: fixed no-repeat url('../images/manhole.png');
   background-repeat: no-repeat;
   background-position: center var(--xxlarge);
@@ -24,10 +18,10 @@ body {
   width: 100vw;
   position: fixed;
   z-index: -2;
+  background-size: var(--page-max-width);
 }
 .page-background.js-mobile {
-  background-size: 100%;
-} */
+}
 .page-wrapper {
   max-width: var(--page-max-width);
   margin: 0 auto;

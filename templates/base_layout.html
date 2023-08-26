@@ -21,9 +21,9 @@
   <link rel="stylesheet" href="{% static 'css/index.css' %}">
 </head>
 <body>
+  <div class="page-background responsive"></div>
   <div class="wrapper responsive">
     {% include 'header.html' %}
-    {% comment %} <div class="page-background responsive"></div> {% endcomment %}
     <div class="page-wrapper responsive">
       {% block content %}{% endblock %}
     </div>
