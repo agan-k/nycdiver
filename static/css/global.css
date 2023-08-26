@@ -2,6 +2,7 @@
   background: fixed no-repeat url('../images/manhole.png');
   background-repeat: no-repeat;
   background-position: center;
+  background-attachment: fixed;
   background-size: var(--page-max-width);
   background-color: var(--page-background);
 }
