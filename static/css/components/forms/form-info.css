@@ -2,7 +2,7 @@
   margin-bottom: var(--medium);
 }
 .form-info__heading {
-  font-size: var(--heading-large);
+  font-size: var(--heading-medium);
   margin: var(--small) 0 var(--small) 0;
 }
 .form-info__body {

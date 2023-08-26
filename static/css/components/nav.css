@@ -30,7 +30,7 @@
   transition: background-color 1s;
 }
 .nav__nav-link {
-  margin: var(--small);
+  margin: var(--medium);
   padding-left: var(--small);
   display: block;
   text-decoration: none;

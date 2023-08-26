@@ -23,6 +23,10 @@ body {
   width: var(--page-max-width);
   height: var(--page-max-width);
 }
+.page-background.page-wrapper.js-mobile img {
+  width: var(--mobile-page-max-width);
+  height: var(--mobile-page-max-width);
+}
 .page-wrapper {
   max-width: var(--page-max-width);
   margin: 0 auto;

@@ -4,10 +4,12 @@
   color: black;
 }
 .form-input.address-borough {
+  border-radius: none;
   height: calc(var(--large) + 2px);
   width: 104%;
   background-color: var(--light-gray);
   margin-bottom: var(--medium);
+  font-size: var(--body-text-xsmall);
 }
 label[for=id_cover_amount] {
   display: none;

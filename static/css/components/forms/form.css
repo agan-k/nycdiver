@@ -1,9 +1,11 @@
 .form-wrapper {
+  width: 80%;
   margin: 0 auto;
   background-color: var(--background);
   padding: var(--large);
 }
 .form-wrapper.js-mobile {
+  width: 70%;
   padding: var(--medium);
 }
 form input {
