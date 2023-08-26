@@ -7,8 +7,15 @@ body {
   background-color: var(--page-background);
 }
 .wrapper {
+  background: fixed no-repeat url('../images/manhole.png');
+  background-repeat: no-repeat;
+  background-position: center var(--xxlarge);
+  background-size: 30%;
   font-family: var(--main-body-text);
   color: var(--diffused);
+}
+.wrapper.js-mobile {
+  background-size: 90%;
 }
 .page-background {
   background: fixed no-repeat url('../images/manhole.png');
