@@ -15,17 +15,17 @@ body {
   top: var(--xxlarge);
   display: flex;
   justify-content: center;
-  height: 100vh;
-  width: 100vw;
+  height: 99vh;
+  width: 99vw;
   z-index: -2;
 }
-.page-background img {
+.page-background .logo {
   width: var(--page-max-width);
   height: var(--page-max-width);
 }
-.page-background.page-wrapper.js-mobile img {
-  width: var(--mobile-page-max-width);
-  height: var(--mobile-page-max-width);
+.page-background .logo.js-mobile {
+  width: calc(var(--mobile-page-max-width) - var(--small));
+  height: calc(var(--mobile-page-max-width) - var(--small));
 }
 .page-wrapper {
   max-width: var(--page-max-width);

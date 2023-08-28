@@ -30,7 +30,7 @@ class EventForm(ModelForm):
             'time_start': forms.TimeInput(attrs={'class':'form-input time-select', 'type':'time'}),
             'time_end': forms.TimeInput(attrs={'class':'form-input time-select', 'type':'time'}),
             'address_street': forms.TextInput(attrs={'class':'form-input'}),
-            'address_borough': forms.Select(attrs={'class':'form-input address-borough'}),
+            'address_borough': forms.Select(attrs={'class':'form-input address-borough responsive'}),
             'address_zip': forms.TextInput(attrs={'class': 'form-input'}),
             'phone': forms.TextInput(attrs={'class': 'form-input', 'pattern':'[0-9]+'}),
             'map_link': forms.TextInput(attrs={'class': 'form-input'}),

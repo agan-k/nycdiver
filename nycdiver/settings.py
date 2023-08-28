@@ -26,9 +26,9 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'django-insecure-r(iu_rlkpz*k+@
 # DEBUG = True
 DEBUG = os.environ.get('DJANGO_DEBUG', '') != 'False'
 
-ALLOWED_HOSTS = ['127.0.0.1', '.railway.app', 'localhost']
+ALLOWED_HOSTS = ['127.0.0.1', '.railway.app', 'localhost', '.ngrok-free.app']
 
-CSRF_TRUSTED_ORIGINS = ['https://*.railway.app']
+CSRF_TRUSTED_ORIGINS = ['https://*.railway.app', 'https://*.ngrok-free.app']
 
 # Application definition
 

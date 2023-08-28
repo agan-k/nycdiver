@@ -1,21 +1,21 @@
 .form-wrapper {
-  width: 80%;
+  width: 90%;
   margin: 0 auto;
   background-color: var(--background);
   padding: var(--large);
-}
-.form-wrapper.js-mobile {
-  width: 70%;
-  padding: var(--medium);
+  box-sizing: border-box;
 }
 form input {
+  box-sizing: border-box;
+  appearance: none;
+  display: block;
+  border-radius: 0;
   font-size: var(--body-text-large);
   width: 100%;
   height: var(--large);
   background-color: var(--light-gray);
   margin-bottom: var(--medium);
   border: none;
-  border-radius: none; /* remove border radius for ios safari */
 }
 form input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--low-key);
