@@ -15,6 +15,7 @@ form input {
   background-color: var(--light-gray);
   margin-bottom: var(--medium);
   border: none;
+  border-radius: none; /* remove border radius for ios safari */
 }
 form input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
   color: var(--low-key);
