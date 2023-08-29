@@ -144,5 +144,4 @@ STATIC_ROOT = BASE_DIR / 'staticfiles'
 
 # Simplified static file serving.
 # https://pypi.org/project/whitenoise/
-# STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-STATICFILES_STORAGE = "django.contrib.staticfiles.storage.ManifestStaticFilesStorage"
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
