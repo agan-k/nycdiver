@@ -1,0 +1,26 @@
+a.anchor {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  color: var(--diffused);
+  width: 100%;
+  height: 45px;
+  font-size: var(--body-text-small);
+}
+a.anchor--circle {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  border: 2px solid var(--diffused);
+  font-size: var(--heading-medium);
+}
+a.anchor.button--primary, a.anchor-circle {
+  background-color: var(--blue);
+}
+a.anchor.button--secondary, a.anchor-circle {
+  background-color: var(--green);
+}
+a.anchor.button--danger, a.anchor-circle {
+  background-color: var(--red);
+}

@@ -37,10 +37,10 @@
       {% if request.path == '/my_events/' %}
         <div class="event-card__btn-container">
           {% if event.staged_for_deletion %}
-            {% include 'components/buttons/anchor.html' with label='&#8634;' action='delete' path_name='toggle-user-event-delete' event_id=event.id button_variation='secondary' shape='circle' %}
+            {% include 'components/buttons/anchor_button.html' with label='&#8634;' action='delete' path_name='toggle-user-event-delete' event_id=event.id button_variation='secondary' shape='circle' %}
           {% else %}
-              {% include 'components/buttons/anchor.html' with label='✏️' action='update' path_name='event-update' event_id=event.id button_variation='primary' shape='circle' %}
-              {% include 'components/buttons/anchor.html' with label='🗑' action='delete' path_name='toggle-user-event-delete' event_id=event.id button_variation='danger' shape='circle' %}
+              {% include 'components/buttons/anchor_button.html' with label='✏️' action='update' path_name='event-update' event_id=event.id button_variation='primary' shape='circle' %}
+              {% include 'components/buttons/anchor_button.html' with label='🗑' action='delete' path_name='toggle-user-event-delete' event_id=event.id button_variation='danger' shape='circle' %}
           {% endif %}
         </div>
       {% endif %}
