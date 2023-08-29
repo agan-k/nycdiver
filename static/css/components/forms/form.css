@@ -1,20 +1,25 @@
 .form-wrapper {
-  width: 90%;
+  width: 95%;
   margin: 0 auto;
   background-color: var(--background);
-  padding: var(--large);
+  padding: var(--medium);
   box-sizing: border-box;
+}
+form textarea {
+  box-sizing: border-box;
+  width: 100%;
+  border-radius: 0;
 }
 form input {
   box-sizing: border-box;
   appearance: none;
   display: block;
-  border-radius: 0;
   font-size: var(--body-text-large);
   width: 100%;
   height: var(--large);
   background-color: var(--light-gray);
   margin-bottom: var(--medium);
+  border-radius: 0;
   border: none;
 }
 form input::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
