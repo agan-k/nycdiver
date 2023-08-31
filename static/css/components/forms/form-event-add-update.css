@@ -1,15 +1,16 @@
-.form-input.date-select,
-.form-iput.time-select,
-.form-input.address-borough {
-  color: black;
-}
-
 .form-input input {
   -moz-appearance: none; 
   -webkit-appearance: none; 
   appearance: none;
 }
-input[type="time"] {
+.form-input.address-borough {
+  color: black;
+}
+input[type="time"],
+input[type="date"] {
+  -moz-appearance: none; 
+  -webkit-appearance: none; 
+  appearance: none;
   color: black; /* ios Safari and Chrome */
 }
 .form-input.address-borough {
