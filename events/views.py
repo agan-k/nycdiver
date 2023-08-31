@@ -26,10 +26,10 @@ def search_events_view(request):
     if request.method == 'POST':
         search_request = request.POST.get('search_request')
         search_results = Event.objects.filter(
-            Q(headliner__contains=search_request) | 
-            Q(venue__contains=search_request) | 
-            Q(description__contains=search_request) |
-            Q(address_borough__contains=search_request)).values()
+            Q(headliner__icontains=search_request) | 
+            Q(venue__icontains=search_request) | 
+            Q(description__icontains=search_request) |
+            Q(address_borough__icontains=search_request)).values()
         ATTACH_SEARCH_RESULTS_MESSAGE(search_results, search_request, context)
         return render(request, 'home.html', context=context)
     elif request.method == 'GET':
