@@ -2,7 +2,7 @@
   width: 95%;
   margin: 0 auto;
   background-color: var(--background);
-  padding: var(--medium);
+  padding: var(--large);
   box-sizing: border-box;
 }
 form textarea {
