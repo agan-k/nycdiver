@@ -1,13 +1,32 @@
+from datetime import datetime
+
+current_dateTime = datetime.now()
+
+'''
+form.fields['tank'].initial = 123
+
+'''
+
+def initial_date_and_time(field_type):
+   initial_date = datetime.now()
+   initial_time = initial_date.replace(second=0)
+   if field_type == 'date':
+      return initial_date
+   else:
+      return initial_time
+
+INITIAL_DATE_AND_TIME = lambda field_type: initial_date_and_time(field_type)
+
 def attach_auth_message(request, context):
-      if 'loggedin' in request.GET:
-        context['auth_message'] = f'You are logged in as {request.user}.'
-      elif 'loggedout' in request.GET:
-        context['auth_message'] = f'Logged out successfully.'
+    if 'loggedin' in request.GET:
+      context['auth_message'] = f'You are logged in as {request.user}.'
+    elif 'loggedout' in request.GET:
+      context['auth_message'] = f'Logged out successfully.'
 def attach_posted_message(request, context):
-      if 'added' in request.GET:
-        context['posted_message'] = f'Event added successfully.'
-      elif 'updated' in request.GET:
-        context['posted_message'] = f'Event updated successfully.'
+    if 'added' in request.GET:
+      context['posted_message'] = f'Event added successfully.'
+    elif 'updated' in request.GET:
+      context['posted_message'] = f'Event updated successfully.'
 
 def attach_old_user_events_message(num_old_user_events, context):
    if num_old_user_events > 0:

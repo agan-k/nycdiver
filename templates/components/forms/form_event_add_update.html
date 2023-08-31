@@ -25,17 +25,17 @@
       {{field.errors}}
       {{field.label_tag}}
       {{field}}
-    {% endif %}
-  {% endfor %}
-  <!-- start time: & end time:-->
-  {% for field in form.visible_fields %}
-    {% if field.name == 'time_start' or field.name == 'time_end' %}
-      {{field.errors}}
-    {% endif %}
-  {% endfor %}
-  <div class="flex-box--space-between">
-    {% for field in form.visible_fields %}
+      {% endif %}
+      {% endfor %}
+      <!-- start time: & end time:-->
+      {% for field in form.visible_fields %}
       {% if field.name == 'time_start' or field.name == 'time_end' %}
+      {{field.errors}}
+      {% endif %}
+      {% endfor %}
+      <div class="flex-box--space-between">
+        {% for field in form.visible_fields %}
+        {% if field.name == 'time_start' or field.name == 'time_end' %}
         <div class="flex-item">
           {{field.label_tag}}
           {{field}}

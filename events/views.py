@@ -6,7 +6,8 @@ from .utils import (
     ATTACH_AUTH_MESSAGE,
     ATTACH_POSTED_MESSAGE,
     ATTACH_OLD_USER_EVENTS_MESSAGE, 
-    ATTACH_SEARCH_RESULTS_MESSAGE, 
+    ATTACH_SEARCH_RESULTS_MESSAGE,
+    INITIAL_DATE_AND_TIME,
 ) 
 from .data import *
 from .manage_data import (
@@ -121,7 +122,12 @@ def add_event(request):
             form.save()
             return redirect('/my_events/?added')
     elif request.method == 'GET':
-        form = EventForm(initial={'owner': request.user})
+        form = EventForm(initial={
+            'owner': request.user, 
+            'date': INITIAL_DATE_AND_TIME('date'),
+            'time_start': INITIAL_DATE_AND_TIME('time'),
+            'time_end': INITIAL_DATE_AND_TIME('time'),
+            })
     context['form'] = form
     if request.user.is_authenticated:
       ATTACH_AUTH_MESSAGE(request, context)
