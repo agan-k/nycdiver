@@ -1,14 +1,8 @@
 from datetime import datetime
-
-current_dateTime = datetime.now()
-
-'''
-form.fields['tank'].initial = 123
-
-'''
+import pytz
 
 def initial_date_and_time(field_type):
-   initial_date = datetime.now()
+   initial_date = datetime.now(pytz.timezone('America/New_York'))
    initial_time = initial_date.replace(second=0)
    if field_type == 'date':
       return initial_date
