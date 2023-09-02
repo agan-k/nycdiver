@@ -1,8 +1,17 @@
 from .models import Event
-from datetime import date, timedelta
+from datetime import date, timedelta, datetime
 
 EVENT_EXPARATION_DATE = date.today()
 EVENT_DELETION_DATE = date.today() - timedelta(weeks=1)
+
+# from .models import Event
+# from datetime import date, timedelta, datetime
+# import pytz
+
+# current_time = datetime.now(pytz.timezone('America/New_York'))
+# EVENT_EXPARATION_DATE = datetime.now(pytz.timezone('America/New_York'))
+# EVENT_DELETION_DATE = current_time - timedelta(weeks=1)
+
 
 TODAYS_EVENTS = lambda: Event.objects.filter(
     date=date.today()).all()
