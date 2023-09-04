@@ -7,8 +7,8 @@
   </div>
   <div class="nav__nav-row">
     <span class="nav__nav-row--name">My Events</span>
-    {% include 'components/nav/nav_link.html' with label='My Listings' num_events=num_user_events url_name='event-list-user' request_path='/my_events/' %}
-    {% include 'components/nav/nav_link.html' with label='Add Listing' url_name='event-add' request_path='/event_add/' %}
+    {% include 'components/nav/nav_link.html' with label='My Events' num_events=num_user_events url_name='event-list-user' request_path='/my_events/' %}
+    {% include 'components/nav/nav_link.html' with label='Add Event' url_name='event-add' request_path='/event_add/' %}
     
     {% if user.is_authenticated %}
       {% include 'components/nav/nav_link.html' with label='Logout' url_name='logout' request_path='users/logout_user' %}

@@ -92,7 +92,11 @@
       {{field}}
     {% endif %}
   {% endfor %}
-  {% include 'components/buttons/button.html' with type='submit' label='Submit' button_variation='secondary' %}
+  {% if 'event_add' in request.path %}
+    {% include 'components/buttons/button.html' with type='submit' label='Add Event' button_variation='primary' %}
+  {% else %}
+    {% include 'components/buttons/button.html' with type='submit' label='Update Event' button_variation='secondary' %}
+  {% endif %}
   <br><br>
-  {% include 'components/buttons/anchor_button.html' with label='Cancel' button_variation='primary' path_name='event-list-user' %}
+  {% include 'components/buttons/anchor_button.html' with label='Cancel' button_variation='danger' path_name='event-list-user' %}
 </form>
