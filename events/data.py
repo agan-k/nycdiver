@@ -3,7 +3,6 @@ from datetime import date, timedelta, datetime
 import pytz
 
 EVENT_EXPARATION_DATE = datetime.now(pytz.timezone('America/New_York')).date()
-today = date.today()
 EVENT_DELETION_DATE = datetime.now(pytz.timezone('America/New_York')).date() - timedelta(weeks=1)
 
 
