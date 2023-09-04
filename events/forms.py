@@ -49,6 +49,8 @@ class EventForm(ModelForm):
             self.add_error('date', 'Invalid date - Event listing in the past')
         if time_end < time_start:
             self.add_error('time_end', 'Invalid time - End Time before Start Time')
+        if time_end == time_start:
+            self.add_error('time_end', 'Invalid time - End Time same as Start Time')
         if cover_amount is not None:
             if not cover_amount.isdigit():
                 self.add_error('cover_amount', 'Invalid amount - Enter enter amount number')
