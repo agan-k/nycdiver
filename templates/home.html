@@ -1,6 +1,7 @@
 {% extends 'base_layout.html' %}
 {% block content %}
-{{current_time}}
+{{current_time}} <br>
+{{deletion_time}}
   {% if search_request %}
     {% for result in  search_results %}
       {% include 'components/cards/event_card.html' with event=result event_list='search-results' %}

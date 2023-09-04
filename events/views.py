@@ -60,6 +60,7 @@ def event_list_today_view(request):
         'num_user_events': NUM_USER_EVENTS(request), 
     }
     context['current_time'] = datetime.datetime.now(pytz.timezone('America/New_York'))
+    context['deletion_time'] = datetime.datetime.now(pytz.timezone('America/New_York')) - datetime.timedelta(weeks=1)
     return render(request, 'home.html', context=context)
 
 def event_list_week_view(request):
