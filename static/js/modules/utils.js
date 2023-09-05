@@ -10,7 +10,7 @@ export const styleElement = (element, style) => {
 
 
 export const getCopyrightYear = () => {
-  document.getElementById('copyright').innerHTML = `&copy;&nbsp;${new Date().getFullYear()}`;
+  document.getElementById('copyright').innerHTML = `&copy;${new Date().getFullYear()}`;
 }
 
 export function formatFieldContent(field) {
