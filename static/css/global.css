@@ -31,6 +31,7 @@ body {
   padding-bottom: var(--xlarge);
 }
 .page-wrapper.js-mobile {
+  padding-top: var(--xxlarge);
   max-width: var(--mobile-page-max-width);
 }
 li {
