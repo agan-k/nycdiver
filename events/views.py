@@ -39,6 +39,7 @@ def home(request):
     STAGE_EXPIRED_EVENTS_FOR_DELETION()
     DELETE_STAGED_EVENTS()
     context = {
+        'all_events': EVENTS(),
         'num_todays_events': NUM_TODAYS_EVENTS(),
         'num_weeks_events': NUM_WEEKS_EVENTS(),
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),

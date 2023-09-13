@@ -1,7 +1,7 @@
 export const BODY = document.querySelector('body');
 export const FIELD_CONTENT_PHONE = document.querySelectorAll('.event-card__phone');
 export const NUM_OF_EXPIRED_EVENTS = document.currentScript.dataset.expired;
-export const EVENT_LISTINGS = document.querySelectorAll('.event-card--today, .event-card--week, .event-card--upcoming, .event-card--search-results');
+export const EVENT_LISTINGS = document.querySelectorAll('.event-card--all, .event-card--today, .event-card--week, .event-card--upcoming, .event-card--search-results');
 export const COVER_CHARGE_INPUTS = document.querySelectorAll('.cover-charge');
 export const COVER_AMOUNT_INPUT = document.getElementById('id_cover_amount');
 export const COVER_AMOUNT_LABEL = document.querySelectorAll('label[for=id_cover_amount]');
