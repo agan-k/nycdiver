@@ -1,5 +1,5 @@
 .search-form {
-  flex: 1 1 70%;
+  flex: 1;
   position: relative;
   padding-top: var(--small);
   padding-bottom: var(--small);

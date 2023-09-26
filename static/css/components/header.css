@@ -21,7 +21,6 @@
   width: var(--mobile-page-max-width);
 }
 .header__user-info {
-  flex: 1 1 15%;
   display: flex;
   align-items: center;
   padding-left: var(--small);
