@@ -6,9 +6,10 @@ EVENT_EXPARATION_DATE = datetime.now(pytz.timezone('America/New_York')).date()
 EVENT_DELETION_DATE = datetime.now(pytz.timezone('America/New_York')).date() - timedelta(weeks=1)
 
 
+EVENTS = lambda: Event.objects.filter(
+  date__gt=(date.today() - (timedelta(days=1)))).all()
 TODAYS_EVENTS = lambda: Event.objects.filter(
     date=date.today()).all()
-EVENTS = lambda: Event.objects.all()
 USER_EVENTS = lambda request: Event.objects.filter(
     owner=request.user.username).all()
 UPCOMING_EVENTS = lambda: Event.objects.filter(
