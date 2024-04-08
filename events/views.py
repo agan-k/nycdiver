@@ -15,6 +15,16 @@ from .manage_data import (
     TOGGLE_STAGE_USER_EVENT_DELETE,
     DELETE_STAGED_EVENTS,
 )
+from .v_vanguard import (get_vanguard, URL)
+
+print(INITIAL_DATE_AND_TIME('time'))
+
+def populate(request):
+    if request.user.username != 'k-agan':
+        return render(request, 'home.html')
+    get_vanguard(URL)
+    return redirect('/')
+    
 
 def search_events_view(request):
     context = {
@@ -97,6 +107,8 @@ def event_list_user_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
+    if request.user.username == 'k-agan' or request.user.username == 'admin-staging':
+        context['vanguard'] = '/populate'
     ATTACH_AUTH_MESSAGE(request, context)
     ATTACH_POSTED_MESSAGE(request, context)
 
@@ -110,12 +122,15 @@ def event_list_user_view(request):
       return redirect('/users/login_user?next=/my_events')
 
 def add_event(request):
+    print(request)
     context = {
         'num_todays_events': NUM_TODAYS_EVENTS(),
         'num_weeks_events': NUM_WEEKS_EVENTS(),
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
+    if request.user.username == 'k-agan' or request.user.username == 'admin-staging':
+        context['vanguard'] = '/populate'
     if request.method == 'POST':
         event = Event(owner=request.user)
         form = EventForm(request.POST, instance=event)
@@ -156,6 +171,6 @@ def update_event(request, event_id):
 def toggle_user_event_delete(request, event_id):
     TOGGLE_STAGE_USER_EVENT_DELETE(request, event_id)
     event = Event.objects.get(pk=event_id)
-    if event.date < EVENT_EXPARATION_DATE:
+    if event.date < EVENT_EXPIRATION_DATE:
       return redirect(f'/event_update/{event_id}')
     return redirect(f'event-list-user')

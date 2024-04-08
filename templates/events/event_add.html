@@ -1,5 +1,8 @@
 {% extends 'base_layout.html' %}
 {% block content %}
+  {% if vanguard %}
+    {% include 'components/buttons/anchor_button.html' with label='populate vanguard' path_name='populate' button_variation='primary' %}
+  {% endif %}
   <div class="form-wrapper responsive">
     {% if user.is_authenticated %}
       {% include 'components/forms/form_info.html' with heading='Add event listing' required_fields='true' %}
