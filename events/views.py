@@ -15,15 +15,19 @@ from .manage_data import (
     TOGGLE_STAGE_USER_EVENT_DELETE,
     DELETE_STAGED_EVENTS,
 )
-from .v_vanguard import (get_vanguard, URL)
+from .v_vanguard import (get_vanguard, vanguardURL)
+from .smalls import (get_smalls, smallsURL)
 
 print(INITIAL_DATE_AND_TIME('time'))
 
 def populate(request):
+    print('request: ', request.path)
     if request.user.username != 'k-agan':
         return render(request, 'home.html')
-    get_vanguard(URL)
-    return redirect('/')
+    if request.path == '/populate_vanguard/':
+        get_vanguard(vanguardURL)
+        return redirect('/')
+    get_smalls(smallsURL)
     
 
 def search_events_view(request):
@@ -108,7 +112,8 @@ def event_list_user_view(request):
         'num_user_events': NUM_USER_EVENTS(request), 
     }
     if request.user.username == 'k-agan' or request.user.username == 'admin-staging':
-        context['vanguard'] = '/populate'
+        context['vanguard'] = '/populate_vanguard'
+        context['smalls'] = '/populate_smalls'
     ATTACH_AUTH_MESSAGE(request, context)
     ATTACH_POSTED_MESSAGE(request, context)
 
@@ -130,7 +135,8 @@ def add_event(request):
         'num_user_events': NUM_USER_EVENTS(request), 
     }
     if request.user.username == 'k-agan' or request.user.username == 'admin-staging':
-        context['vanguard'] = '/populate'
+        context['vanguard'] = '/populate_vanguard'
+        context['smalls'] = '/populate_smalls'
     if request.method == 'POST':
         event = Event(owner=request.user)
         form = EventForm(request.POST, instance=event)

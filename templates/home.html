@@ -23,7 +23,10 @@
     {% endfor %}
   {% elif user_events %}
     {% if vanguard %}
-      {% include 'components/buttons/anchor_button.html' with label='populate vanguard' path_name='populate' button_variation='primary' %}
+      {% include 'components/buttons/anchor_button.html' with label='populate vanguard' path_name='populate-vanguard' button_variation='primary' %}
+    {% endif %}
+    {% if smalls %}
+      {% include 'components/buttons/anchor_button.html' with label='populate smalls' path_name='populate-smalls' button_variation='secondary' %}
     {% endif %}
     {% for event in user_events %}
       {% include 'components/cards/event_card.html' with event=event event_list='user' %}

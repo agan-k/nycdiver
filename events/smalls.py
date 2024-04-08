@@ -23,10 +23,13 @@ months = {
     'December': 12,
 }
 
-def get_vanguard(url):
+smallsURL = 'https://www.smallslive.com/'
+
+def get_smalls(url):
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
-    upcoming = soup.find('div', 'event-short-description')
+    upcoming = soup.find(id='home-calender')
+    return print(upcoming)
     # remove spaces between html tags:
     para = re.sub(">\s*<","><", str(upcoming.p))
     upcoming_events = BeautifulSoup(para, 'html.parser')
@@ -68,9 +71,6 @@ def get_vanguard(url):
         )
         new_event.save()
 
-vanguardURL = 'https://villagevanguard.com/event/coming-soon'
-      
-      
 # if __name__ == '__main__': 
 #   url = 'https://villagevanguard.com/event/coming-soon'
-#   get_page(url)
+#   get_smalls(url)

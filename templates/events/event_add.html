@@ -1,7 +1,10 @@
 {% extends 'base_layout.html' %}
 {% block content %}
   {% if vanguard %}
-    {% include 'components/buttons/anchor_button.html' with label='populate vanguard' path_name='populate' button_variation='primary' %}
+    {% include 'components/buttons/anchor_button.html' with label='populate vanguard' path_name='populate-vanguard' button_variation='primary' %}
+  {% endif %}
+  {% if smalls %}
+    {% include 'components/buttons/anchor_button.html' with label='populate smalls' path_name='populate-smalls' button_variation='secondary' %}
   {% endif %}
   <div class="form-wrapper responsive">
     {% if user.is_authenticated %}
