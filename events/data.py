@@ -2,7 +2,7 @@ from .models import Event
 from datetime import date, timedelta, datetime
 import pytz
 
-EVENT_EXPARATION_DATE = datetime.now(pytz.timezone('America/New_York')).date()
+EVENT_EXPIRATION_DATE = datetime.now(pytz.timezone('America/New_York')).date()
 EVENT_DELETION_DATE = datetime.now(pytz.timezone('America/New_York')).date() - timedelta(weeks=1)
 
 
@@ -17,7 +17,7 @@ UPCOMING_EVENTS = lambda: Event.objects.filter(
 WEEKS_EVENTS = lambda: Event.objects.filter(
     date__range=[date.today(), date.today() + timedelta(days=6)]).all()
 EXPIRED_EVENTS = lambda: Event.objects.filter(
-    date__lt=EVENT_EXPARATION_DATE).all()
+    date__lt=EVENT_EXPIRATION_DATE).all()
 EXPIRED_USER_EVENTS = lambda request: EXPIRED_EVENTS().filter(owner=request.user.username).all()
 EVENTS_STAGED_FOR_DELETION = lambda: Event.objects.filter(
     staged_for_deletion=True).all()
