@@ -107,7 +107,7 @@ def event_list_user_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
-    if request.user.username == 'k-agan':
+    if request.user.username == 'k-agan' or request.user.username == 'admin-staging':
         context['vanguard'] = '/populate'
     ATTACH_AUTH_MESSAGE(request, context)
     ATTACH_POSTED_MESSAGE(request, context)
