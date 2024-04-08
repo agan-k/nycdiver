@@ -15,20 +15,14 @@ from .manage_data import (
     TOGGLE_STAGE_USER_EVENT_DELETE,
     DELETE_STAGED_EVENTS,
 )
-from .v_vanguard import (get_page, URL)
+from .v_vanguard import (get_vanguard, URL)
 
 print(INITIAL_DATE_AND_TIME('time'))
 
 def populate(request):
     if request.user.username != 'k-agan':
         return render(request, 'home.html')
-    context = {
-        'num_todays_events': NUM_TODAYS_EVENTS(),
-        'num_weeks_events': NUM_WEEKS_EVENTS(),
-        'num_upcoming_events': NUM_UPCOMING_EVENTS(),
-        'num_user_events': NUM_USER_EVENTS(request),
-    }
-    get_page(URL)
+    get_vanguard(URL)
     return redirect('/')
     
 
@@ -113,6 +107,8 @@ def event_list_user_view(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
+    if request.user.username == 'k-agan':
+        context['vanguard'] = '/populate'
     ATTACH_AUTH_MESSAGE(request, context)
     ATTACH_POSTED_MESSAGE(request, context)
 
@@ -133,6 +129,8 @@ def add_event(request):
         'num_upcoming_events': NUM_UPCOMING_EVENTS(),
         'num_user_events': NUM_USER_EVENTS(request), 
     }
+    if request.user.username == 'k-agan':
+        context['vanguard'] = '/populate'
     if request.method == 'POST':
         event = Event(owner=request.user)
         form = EventForm(request.POST, instance=event)

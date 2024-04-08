@@ -2,8 +2,7 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from .models import Event
-from datetime import date, timedelta, datetime
-import pytz
+from datetime import datetime
 import datetime
 
 today = datetime.date.today()
@@ -24,35 +23,50 @@ months = {
     'December': 12,
 }
 
-def get_page(url):
-    print('vanguard')
+def get_vanguard(url):
     r = requests.get(url)
-    # print (r.status_code)
-    # with open("test.html", "w") as fp:
-    #     fp.write(r.text)
     soup = BeautifulSoup(r.text, 'html.parser')
-    upcoming_events = soup('h4')
-    for event in upcoming_events:
-        event_headliner = event.contents[1]
-        event_headliner = re.sub('</strong>', '', str(event_headliner))
-        event_headliner = re.sub('<strong>', '', str(event_headliner))
-        event_date = event.contents[0].split(' ')
-        month = months[event_date[0]]
-        day = event_date[1]
-        event_date = str(month)+'/'+str(day)+'/'+str(current_year)
-        
-        print(soup.h4.string)
-        # new_event = Event(
-        #   owner='k-agan',
-        #   headliner=event_headliner,
-        #   date=event_date,
-        #   time_start='20:00:00',
-        #   time_end='23:00:00',
-        #   venue='Village Vanguard',
-        #   address_street='178 7TH Avenue South',
-        #   address_borough='Manhattan'
-        # )
-        # new_event.save()
+    upcoming = soup.find('div', 'event-short-description')
+    # remove spaces between html tags:
+    para = re.sub(">\s*<","><", str(upcoming.p))
+    upcoming_events = BeautifulSoup(para, 'html.parser')
+    upcoming_events = upcoming_events.p
+    events_dic = {}
+    for child in upcoming_events.children:
+        if child.name == 'h4':
+            event_date = child.contents[0].split(' ')
+            month = months[event_date[0]]
+            day = event_date[1]
+            event_date = str(current_year)+'-'+str(month)+'-'+str(day)
+            event = {
+                'date': event_date
+            }
+            events_dic[child.strong.contents[0]] = event
+            for sibling in child.next_siblings:
+                if sibling.name == 'p':
+                    event['description'] = sibling.string
+                    #check if there's another <p> with additional description and then give up! :^\
+                    for adjacent_sib in sibling.next_siblings:
+                        if adjacent_sib and adjacent_sib.name == 'p':
+                            event['description'] += ', '+adjacent_sib.string
+                        break
+                break
+
+    for event in events_dic:
+        new_event = Event(
+          owner='k-agan',
+          headliner=event,
+          cover_charge='Yes',
+          cover_amount='40',
+          date=events_dic[event]['date'],
+          time_start='20:00:00',
+          time_end='23:00:00',
+          venue='Village Vanguard',
+          address_street='178 7TH Avenue South',
+          address_borough='Manhattan',
+          description=events_dic[event]['description']
+        )
+        new_event.save()
 
 URL = 'https://villagevanguard.com/event/coming-soon'
       

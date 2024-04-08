@@ -22,6 +22,9 @@
       {% include 'components/cards/event_card.html' with event=event event_list='upcoming' %}
     {% endfor %}
   {% elif user_events %}
+    {% if vanguard %}
+      {% include 'components/buttons/anchor_button.html' with label='populate vanguard' path_name='populate' button_variation='primary' %}
+    {% endif %}
     {% for event in user_events %}
       {% include 'components/cards/event_card.html' with event=event event_list='user' %}
     {% endfor %}
