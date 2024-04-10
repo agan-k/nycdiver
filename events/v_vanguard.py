@@ -68,7 +68,7 @@ def get_vanguard(url):
         )
         new_event.save()
 
-URL = 'https://villagevanguard.com/event/coming-soon'
+vanguardURL = 'https://villagevanguard.com/event/coming-soon'
       
       
 # if __name__ == '__main__': 
