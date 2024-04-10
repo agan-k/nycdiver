@@ -28,6 +28,9 @@
     {% if smalls %}
       {% include 'components/buttons/anchor_button.html' with label='populate smalls' path_name='populate-smalls' button_variation='secondary' %}
     {% endif %}
+    {% if mazie %}
+      {% include 'components/buttons/anchor_button.html' with label='populate mazie' path_name='populate-mazie' button_variation='primary' %}
+    {% endif %}
     {% for event in user_events %}
       {% include 'components/cards/event_card.html' with event=event event_list='user' %}
     {% endfor %}

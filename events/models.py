@@ -9,7 +9,7 @@ class Event(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, help_text='Unique ID for Event')
     staged_for_deletion = models.BooleanField(default=False)
     owner = models.CharField('', max_length=50)
-    headliner = models.CharField('name:', max_length=50)
+    headliner = models.CharField('name:', max_length=200)
     date = models.DateField('pick date:')
     time_start = models.TimeField('from:')
     time_end = models.TimeField('to:')
@@ -38,6 +38,7 @@ class Event(models.Model):
     phone = models.CharField('phone:', max_length=10, null=True, blank=True, validators=[MinLengthValidator(10)])
     map_link = models.CharField('map link:', max_length=300, null=True, blank=True)
     description = models.CharField('notes:', blank=True, max_length=200)
+    cta = models.CharField('notes:', blank=True, max_length=200)
 
     class Meta:
         ordering = ['date']

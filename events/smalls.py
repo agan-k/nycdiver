@@ -61,7 +61,6 @@ def get_smalls(url):
             event['address_street'] = 'Mezzrow - 163 West 10 th Street, basement'
             event['cover_charge'] = '20'
         time_infos = show.find_all('div', 'sets')
-        smalls_dic[show.find('p', 'event-info-title').text] = event 
         for info in time_infos:
             if 'Sets' in info.text:
                 event['description'] = info.text
@@ -86,6 +85,9 @@ def get_smalls(url):
                         month = word
                 event_date = str(current_year)+'-'+str(months[month])+'-'+str(day)
                 event['date'] = event_date
+                
+            smalls_dic[show.find('p', 'event-info-title').text] = event 
+
     for event in smalls_dic:
         new_event = Event(
           owner='k-agan',
