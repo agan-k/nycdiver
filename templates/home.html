@@ -1,5 +1,8 @@
 {% extends 'base_layout.html' %}
 {% block content %}
+
+    {% include 'components/buttons/anchor_button.html' with label='populate vanguard' path_name='populate-vanguard' button_variation='primary' %}
+    {% include 'components/buttons/anchor_button.html' with label='populate smalls' path_name='populate-smalls' button_variation='secondary' %}
   {% if search_request %}
     {% for result in  search_results %}
       {% include 'components/cards/event_card.html' with event=result event_list='search-results' %}

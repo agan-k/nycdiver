@@ -27,7 +27,9 @@ def populate(request):
     if request.path == '/populate_vanguard/':
         get_vanguard(vanguardURL)
         return redirect('/')
-    get_smalls(smallsURL)
+    elif request.path == '/populate_smalls/':
+        get_smalls(smallsURL)
+        return redirect('/')
     
 
 def search_events_view(request):
