@@ -17,6 +17,7 @@ from .manage_data import (
 )
 from .v_vanguard import (get_vanguard, vanguardURL)
 from .smalls import (get_smalls, smallsURL)
+from .mazie import (get_mazie, mazieURL)
 
 print(INITIAL_DATE_AND_TIME('time'))
 
@@ -29,6 +30,9 @@ def populate(request):
         return redirect('/')
     elif request.path == '/populate_smalls/':
         get_smalls(smallsURL)
+        return redirect('/')
+    elif request.path == '/populate_mazie/':
+        get_mazie(mazieURL)
         return redirect('/')
     
 
@@ -116,6 +120,7 @@ def event_list_user_view(request):
     if request.user.username == 'k-agan' or request.user.username == 'admin-staging':
         context['vanguard'] = '/populate_vanguard'
         context['smalls'] = '/populate_smalls'
+        context['mazie'] = '/populate_mazie'
     ATTACH_AUTH_MESSAGE(request, context)
     ATTACH_POSTED_MESSAGE(request, context)
 
@@ -139,6 +144,7 @@ def add_event(request):
     if request.user.username == 'k-agan' or request.user.username == 'admin-staging':
         context['vanguard'] = '/populate_vanguard'
         context['smalls'] = '/populate_smalls'
+        context['mazie'] = '/populate_mazie'
     if request.method == 'POST':
         event = Event(owner=request.user)
         form = EventForm(request.POST, instance=event)
