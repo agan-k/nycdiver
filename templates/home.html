@@ -1,5 +1,9 @@
 {% extends 'base_layout.html' %}
 {% block content %}
+
+{% include 'components/buttons/anchor_button.html' with label='populate icp' path_name='populate-icp' button_variation='secondary' %}
+
+
   {% if search_request %}
     {% for result in  search_results %}
       {% include 'components/cards/event_card.html' with event=result event_list='search-results' %}
@@ -30,6 +34,9 @@
     {% endif %}
     {% if mazie %}
       {% include 'components/buttons/anchor_button.html' with label='populate mazie' path_name='populate-mazie' button_variation='primary' %}
+    {% endif %}
+    {% if icp %}
+      {% include 'components/buttons/anchor_button.html' with label='populate icp' path_name='populate-icp' button_variation='secondary' %}
     {% endif %}
     {% for event in user_events %}
       {% include 'components/cards/event_card.html' with event=event event_list='user' %}
