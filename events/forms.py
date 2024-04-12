@@ -19,6 +19,7 @@ class EventForm(ModelForm):
             'phone',  
             'map_link', 
             'description',
+            'cta',
         )
         widgets = {
             'headliner': forms.TextInput(attrs={'class': 'form-input'}),
@@ -34,6 +35,7 @@ class EventForm(ModelForm):
             'phone': forms.TextInput(attrs={'class': 'form-input', 'pattern':'[0-9]+'}),
             'map_link': forms.TextInput(attrs={'class': 'form-input'}),
             'description': forms.Textarea(attrs={'class': 'form-input description', 'maxlength': '200',}),
+            'cta': forms.TextInput(attrs={'class': 'form-input cta', 'maxlength': '200'}),
         }
         
     def clean(self):
@@ -44,6 +46,7 @@ class EventForm(ModelForm):
         address_zip = cleaned_data.get('address_zip')
         cover_amount = cleaned_data.get('cover_amount')
         map_link = cleaned_data.get('map_link')
+        cta = cleaned_data.get('cta')
 
         if date < date.today():
             self.add_error('date', 'Invalid date - Event listing in the past')
@@ -60,4 +63,7 @@ class EventForm(ModelForm):
         if map_link is not None:
             if 'https://' not in map_link and 'http://' not in map_link:
                 self.add_error('map_link', 'Invalid map URL - URL should start with http:// or https://')
+        if cta is not None:
+            if 'https://' not in cta and 'http://' not in cta:
+                self.add_error('cta', 'Invalid CTA link (href) - should start with http:// or https://')
         return cleaned_data

@@ -38,7 +38,7 @@ class Event(models.Model):
     phone = models.CharField('phone:', max_length=10, null=True, blank=True, validators=[MinLengthValidator(10)])
     map_link = models.CharField('map link:', max_length=300, null=True, blank=True)
     description = models.CharField('notes:', blank=True, max_length=200)
-    cta = models.CharField('notes:', blank=True, max_length=200)
+    cta = models.CharField('cta link:', blank=True, max_length=200)
 
     class Meta:
         ordering = ['date']

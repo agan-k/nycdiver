@@ -92,6 +92,18 @@
       {{field}}
     {% endif %}
   {% endfor %}
+  <!-- cta (input for href) -->
+  {% for field in form.visible_fields %}
+    {% if field.name == 'cta' %}
+      {{field.errors}}
+    {% endif %}
+  {% endfor %}
+  {% for field in form.visible_fields %}
+    {% if field.name == 'cta' %}
+      {{field.label_tag}}
+      {{field}}
+    {% endif %}
+  {% endfor %}
   {% if 'event_add' in request.path %}
     {% include 'components/buttons/button.html' with type='submit' label='Add Event' button_variation='primary' %}
   {% else %}
