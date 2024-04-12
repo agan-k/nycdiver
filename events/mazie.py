@@ -99,9 +99,9 @@ def get_mazie(url):
           time_end=mazie_dic[event]['time_end'],
           venue=mazie_dic[event]['venue'],
           address_street=mazie_dic[event]['address_street'],
+          map_link='https://www.stmazie.com/',
           address_borough='Brooklyn',
           description=mazie_dic[event]['description'],
           cta=mazie_dic[event]['cta'],
-          map_link='https://www.stmazie.com/'
         )
         new_event.save()
