@@ -27,6 +27,7 @@ months = {
     'Dec': '12',
 }
 sets = {
+    '3:00 PM': '15:00:00',
     '7:30 PM': '19:30:00',
     '9:00 PM': '21:00:00',
     '10:30 PM': '22:30:00',
@@ -62,14 +63,19 @@ def get_smalls(url):
             event['cover_charge'] = '20'
         time_infos = show.find_all('div', 'sets')
         for info in time_infos:
-            if 'Sets' in info.text:
+            if 'Sets' in info.text or 'From' in info.text:
                 event['description'] = info.text
-                time = re.sub('Sets at ', '', info.text)
+                if 'Sets' in info.text:
+                    time = re.sub('Sets at ', '', info.text)
+                else:
+                    time = re.sub('From ', '', info.text)
                 set_start = time[:8]
                 if set_start.endswith(' '):
                   time_start = sets[set_start.strip()]
                 else:
                   time_start = sets[set_start]
+                if time_start == '15:00:00': 
+                  time_end = '17:45:00'
                 if time_start == '19:30:00': 
                   time_end = '21:30:00'
                 if time_start == '22:30:00':
