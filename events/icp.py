@@ -2,13 +2,15 @@ import re
 import requests
 from bs4 import BeautifulSoup
 from .models import Event
-from datetime import datetime
 import datetime
-import datetime
+import time
+
 from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.service import Service
+
 
 
 today = datetime.date.today()
@@ -39,20 +41,36 @@ sets = {
     '10:00 pm': '22:00:00',
 }
 
-icpURL = 'https://www.icp.org/events'
+icpURL = 'http://localhost:8000/'
+# icpURL = 'https://www.icp.org/events'
 
 def get_icp(url):
-    driver = webdriver.Chrome()
+    service = Service()
+    options = webdriver.ChromeOptions()
+    driver = webdriver.Chrome(service=service, options=options)
     driver.get(url)
-    # wait = WebDriverWait(driver, 10)
-    # load_more = wait.until(EC.visibility_of_element_located((By.LINK_TEXT, 'View More')))
-    load_more = driver.find_element('a', 'load_more')
-    return print(load_more)
-    driver.get('https://google.com')
-    driver.find_element_by_id('load_more')
+    # btn = driver.find_element(By.ID, 'klikenzi').click()
+    driver.execute_script('''document.querySelector("#klikenzi").click()''')
+    # btn.click()
+    # elem = driver.find_element_by_xpath('//*[@id="klikenzi"]/html/body/div[2]/div[1]/a')
+    # elem.click()
+
+    # /html/body/div[2]/div[1]/a
+    # /html/body/div[2]/div[1]/a
+    driver.quit()
+    # driver = webdriver.Chrome(service='usr/local/bin/chromedriver')
+    # browser = webdriver.Chrome(executable_path=chromedriver_path)
+    # WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'klikenzi'))).click()
+    # print(btn)
+    
+    # driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "label[for='documentType-0']"))))
+
+    return
+    return
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     upcoming_events = soup.find(id='listResults')
+    return print(upcoming_events)
     return print(upcoming_events)
     upcoming_shows = soup.find_all('div', 'stm-schedule-item')
     icp_dic = {}
