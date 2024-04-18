@@ -20,120 +20,72 @@ today = datetime.date.today()
 current_year = today.year
 
 months = {
-    'January': '01',
-    'February': '02',
-    'March': '03',
-    'April': '04',
+    'Jan': '01',
+    'Feb': '02',
+    'Mar': '03',
+    'Apr': '04',
     'May': '05',
-    'June': '06',
-    'July': '07',
-    'August': '08',
-    'September': '09',
-    'October': '10',
-    'November': '11',
-    'December': '12',
-}
-sets = {
-    '5:00 pm': '17:00:00',
-    '7:30 pm': '19:30:00',
-    '8:00 pm': '20:00:00',
-    '8:30 pm': '20:30:00',
-    '10:00 pm': '22:00:00',
+    'Jun': '06',
+    'Jul': '07',
+    'Aug': '08',
+    'Sep': '09',
+    'Oct': '10',
+    'Nov': '11',
+    'Dec': '12',
 }
 
-icpURL = 'http://localhost:8000/'
-# icpURL = 'https://www.icp.org/events'
+icpURL = 'https://www.icp.org/events'
 
 def get_icp(url):
-    service = Service()
-    options = webdriver.ChromeOptions()
-    driver = webdriver.Chrome(service=service, options=options)
+    """Get visible events from the icpURL and save into Event instance"""
+    driver = webdriver.Chrome()
     driver.get(url)
-    # btn = driver.find_element(By.ID, 'klikenzi').click()
-    driver.execute_script('''document.querySelector("#klikenzi").click()''')
-    # btn.click()
-    # elem = driver.find_element_by_xpath('//*[@id="klikenzi"]/html/body/div[2]/div[1]/a')
-    # elem.click()
+    # Click all the popups
+    cookies_popup = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'decline-cookies')))
+    if cookies_popup is not None:
+        cookies_popup.click()
+    load_more_btn = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'load_more')))
+    load_more_btn.location_once_scrolled_into_view
+    modal_popup = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CLASS_NAME, 'mc-closeModal')))
+    if modal_popup is not None:
+        modal_popup.click()
+    #Click 'View More' button for AJAX to bring in all the results
+    load_more_btn.click()
+    WebDriverWait(driver, 10).until(lambda driver: driver.execute_script("return jQuery.active == 0"))
+    list_results = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.ID, 'listResults')))
+    html = list_results.get_attribute('innerHTML')
 
-    # /html/body/div[2]/div[1]/a
-    # /html/body/div[2]/div[1]/a
-    driver.quit()
-    # driver = webdriver.Chrome(service='usr/local/bin/chromedriver')
-    # browser = webdriver.Chrome(executable_path=chromedriver_path)
-    # WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'klikenzi'))).click()
-    # print(btn)
-    
-    # driver.execute_script("arguments[0].click();", WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CSS_SELECTOR, "label[for='documentType-0']"))))
-
-    return
-    return
-    r = requests.get(url)
-    soup = BeautifulSoup(r.text, 'html.parser')
-    upcoming_events = soup.find(id='listResults')
-    return print(upcoming_events)
-    return print(upcoming_events)
-    upcoming_shows = soup.find_all('div', 'stm-schedule-item')
-    icp_dic = {}
-    for show in upcoming_shows:
-        event = {
-           'date': '',
-           'venue': 'St. icp',
-           'cover_amount': '15',
-           'time_start': '',
-           'time_end': '',
-           'address_street': '345 Grand Street',
-           'description': '',
-           'cta': '',
-        }
-        cta = show.find('a', 'stm-book-here')['href']
-        event['cta'] = cta
-        content = show.find('div', 'stm-schedule-item-content').text
-        content_lower = content.lower()
-        content_text = content_lower.split()
-        if 'private' in content_text:
-            continue
-        date = show.find('div', 'stm-schedule-item-date').text.split()
-        for i, word in enumerate(date):
-            if i == 2:
-                day = word
-            elif i == 1:
-                month = word
+    soup = BeautifulSoup(html, 'html.parser')
+    upcoming_events = soup.find_all('div', 'eventsList-item')
+    for e in upcoming_events:
+        event = {}
+        date_info = e.find('div', 'day')
+        if date_info is not None:
+            event_date = date_info.text.split()
+            for i, word in enumerate(event_date):
+                if i == 0:
+                    day = word
+                elif i == 1:
+                    month = word
         event_date = str(current_year)+'-'+str(months[month])+'-'+str(day)
         event['date'] = event_date
-        time = show.find('div', 'stm-schedule-item-time').text
-        set_start = time[:8]
-        if set_start.endswith(' '):
-            time_start = sets[set_start.strip()]
-        else:
-            time_start = sets[set_start]
-        if time_start == '17:00:00': 
-            time_end = '19:00:00'
-        if time_start == '19:30:00': 
-            time_end = '21:30:00'
-        if time_start == '20:00:00':
-            time_end = '22:00:00'
-        if time_start == '20:30:00':
-            time_end = '23:00:00'
-        if time_start == '22:00:00':
-            time_end = '23:50:00'
-        event['time_end'] = time_end
-        event['time_start'] = time_start
-
-        icp_dic[content] = event
-
+        cta = e.find('a', 'eventsList-info')['href']
+        event['cta'] = cta
+        print(event)
+    return
     for event in icp_dic:
         new_event = Event(
           owner='k-agan',
           headliner=event,
-          cover_charge='Yes',
+          cover_charge='No',
           cover_amount=icp_dic[event]['cover_amount'],
           date=icp_dic[event]['date'],
           time_start=icp_dic[event]['time_start'],
           time_end=icp_dic[event]['time_end'],
-          venue=icp_dic[event]['venue'],
-          address_street=icp_dic[event]['address_street'],
-          map_link='https://www.sticp.com/',
-          address_borough='Brooklyn',
+          venue='International Center of Photography',
+          address_street='79 Essex Street',
+          map_link='https://www.icp.org/',
+          address_borough='Manhattan',
           description=icp_dic[event]['description'],
           cta=icp_dic[event]['cta'],
         )
