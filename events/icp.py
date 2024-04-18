@@ -55,7 +55,7 @@ def get_icp(url):
     WebDriverWait(driver, 20).until(lambda driver: driver.execute_script("return jQuery.active == 0"))
     list_results = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, 'listResults')))
     html = list_results.get_attribute('innerHTML')
-
+    driver.quit()
     soup = BeautifulSoup(html, 'html.parser')
     upcoming_events = soup.find_all('div', 'eventsList-item')
     icp_dic = {}
