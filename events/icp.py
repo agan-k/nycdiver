@@ -52,8 +52,8 @@ def get_icp(url):
         modal_popup.click()
     #Click 'View More' button for AJAX to bring in all the results
     load_more_btn.click()
-    WebDriverWait(driver, 10).until(lambda driver: driver.execute_script("return jQuery.active == 0"))
-    list_results = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.ID, 'listResults')))
+    WebDriverWait(driver, 20).until(lambda driver: driver.execute_script("return jQuery.active == 0"))
+    list_results = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, 'listResults')))
     html = list_results.get_attribute('innerHTML')
 
     soup = BeautifulSoup(html, 'html.parser')
