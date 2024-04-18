@@ -34,6 +34,7 @@ months = {
     'Dec': '12',
 }
 
+
 icpURL = 'https://www.icp.org/events'
 
 def get_icp(url):
@@ -57,6 +58,7 @@ def get_icp(url):
 
     soup = BeautifulSoup(html, 'html.parser')
     upcoming_events = soup.find_all('div', 'eventsList-item')
+    icp_dic = {}
     for e in upcoming_events:
         event = {}
         date_info = e.find('div', 'day')
@@ -71,22 +73,39 @@ def get_icp(url):
         event['date'] = event_date
         cta = e.find('a', 'eventsList-info')['href']
         event['cta'] = cta
-        print(event)
-    return
+        title = e.find('div', 'eventsList-eventTitle')
+        event['headliner'] = title.text
+        time = e.find('div', 'eventsList-eventHour')
+        time = time.text.split(':')
+        if 'PM' in time[1] and int(time[0]) < 12:
+            time[0] = str(int(time[0]) + 12)
+        elif int(time[0]) < 10:
+            time[0] = '0' + str(time[0])
+        
+        
+        time_end = str(int(time[0])+2)+':'+time[1]
+        time_end = time_end.split(' ')
+        time_start = str(time[0])+':'+time[1]
+        time_start = time_start.split(' ')
+        event['time_start'] = time_start[0]
+        event['time_end'] = time_end[0]
+        icp_dic[event['date']] = event
+        # print(event)
+    # print(icp_dic)
     for event in icp_dic:
         new_event = Event(
           owner='k-agan',
-          headliner=event,
-          cover_charge='No',
-          cover_amount=icp_dic[event]['cover_amount'],
+          headliner=icp_dic[event]['headliner'],
+          cover_charge='N/A',
+          cover_amount='',
           date=icp_dic[event]['date'],
           time_start=icp_dic[event]['time_start'],
           time_end=icp_dic[event]['time_end'],
           venue='International Center of Photography',
           address_street='79 Essex Street',
-          map_link='https://www.icp.org/',
+          map_link='',
           address_borough='Manhattan',
-          description=icp_dic[event]['description'],
+          description='',
           cta=icp_dic[event]['cta'],
         )
         new_event.save()

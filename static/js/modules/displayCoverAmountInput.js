@@ -21,7 +21,7 @@ export default function displayCoverAmountInput(checkedValue) {
     COVER_AMOUNT_INPUT.insertAdjacentHTML(
       'beforebegin', "<span style='color:red;'>*</span>"); 
   }
-  if (checkedValue == 'No' && COVER_AMOUNT_INPUT.classList.contains('show')) {
+  if (checkedValue == 'No' || checkedValue == 'N/A' && COVER_AMOUNT_INPUT.classList.contains('show')) {
     COVER_AMOUNT_INPUT.classList.remove('show');
     COVER_AMOUNT_LABEL[0].classList.remove('show');
     COVER_AMOUNT_INPUT.required = false;

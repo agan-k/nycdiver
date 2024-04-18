@@ -11,10 +11,12 @@
   </div>
   <div class="event-card__body">
     <div>
-      {% if event.cover_amount %}
+      {% if event.cover_amount == "Yes" %}
         $&nbsp;{{event.cover_amount}}
+      {% elif event.cover_amount == "No" %}
+        $&nbsp;NO COVER
       {% else %}
-      $&nbsp;NO COVER
+        $&nbsp;N/A
       {% endif %}
     </div>
     <div class="event-card__address">
@@ -35,7 +37,9 @@
     </div>
     <div class="event-card__cta">
       {% if event.cta %}
-        <a class="external-link{% if event.staged_for_deletion %} disabled {% endif %}" href="{{event.cta}}" target="_blank">Buy Tickets</a>
+        <a class="external-link{% if event.staged_for_deletion %} disabled {% endif %}" href="{{event.cta}}" target="_blank">
+          Tickets / Info
+        </a>
       {% endif %}
     </div>
   </div>
