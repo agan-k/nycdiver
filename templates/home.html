@@ -31,6 +31,9 @@
     {% if mazie %}
       {% include 'components/buttons/anchor_button.html' with label='populate mazie' path_name='populate-mazie' button_variation='primary' %}
     {% endif %}
+    {% if zincbar %}
+      {% include 'components/buttons/anchor_button.html' with label='populate zincbar' path_name='populate-zincbar' button_variation='secondary' %}
+    {% endif %}
     {% for event in user_events %}
       {% include 'components/cards/event_card.html' with event=event event_list='user' %}
     {% endfor %}
