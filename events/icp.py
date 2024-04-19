@@ -41,6 +41,8 @@ def get_icp(url):
     """Get visible events from the icpURL and save into Event instance"""
     options = Options()
     options.add_argument("--headless=new")
+    options.add_argument('--no-sandbox')
+    options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(options=options)
     driver.get(url)
     # Click all the popups
