@@ -21,7 +21,7 @@ class Event(models.Model):
     ) 
 
     cover_charge = models.CharField('cover charge?', null=True, max_length=16, default=None, choices=COVER_CHARGE)
-    cover_amount = models.CharField('cover amount', null=True, blank=True, max_length=3)
+    cover_amount = models.CharField('cover amount', null=True, blank=True, max_length=5)
     address_street = models.CharField('street address:', max_length=50)
 
     BOROUGHS = [
