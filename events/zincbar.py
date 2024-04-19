@@ -1,4 +1,3 @@
-import json
 import requests
 from bs4 import BeautifulSoup
 from .models import Event
@@ -47,8 +46,6 @@ def get_zincbar(url):
         event_date = str(current_year)+'-'+str(months[month])+'-'+str(day)
         event['date'] = event_date
         zincbar_dic[event['headliner']] = event
-    # return print(zincbar_dic)
-    # return print(json.dumps(zincbar_dic, sort_keys=True, indent=4))
 
     for event in zincbar_dic:
         new_event = Event(
