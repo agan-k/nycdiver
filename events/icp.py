@@ -9,7 +9,7 @@ from selenium import webdriver
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.chrome.options import Options
 
 
 
@@ -39,7 +39,9 @@ icpURL = 'https://www.icp.org/events'
 
 def get_icp(url):
     """Get visible events from the icpURL and save into Event instance"""
-    driver = webdriver.Chrome()
+    options = Options()
+    options.add_argument("--headless=new")
+    driver = webdriver.Chrome(options=options)
     driver.get(url)
     # Click all the popups
     cookies_popup = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'decline-cookies')))
