@@ -45,6 +45,7 @@ def get_icp(url):
     options.add_argument('--disable-dev-shm-usage')
     driver = webdriver.Chrome(options=options)
     driver.get(url)
+    return
     # Click all the popups
     cookies_popup = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.ID, 'decline-cookies')))
     if cookies_popup is not None:
