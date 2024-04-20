@@ -43,10 +43,6 @@ label[for=id_cover_amount].show {
   width: 98%;
   margin-bottom: var(--xlarge);
 }
-.id_cover_charge_0, 
-.id_cover_charge_1 {
-  display: inline;
-}
 .cover-charge {
   display: flex;
   justify-content: flex-end;
@@ -59,11 +55,8 @@ input.cover-charge {
 }
 .cover-charge > * {
   width: 27%;
+  padding-top: var(--medium);
   padding-bottom: var(--medium);
-}
-.cover-charge:nth-child(2) {
-  display: inline;
-  margin-left: auto;
 }
 .cover-amount{
   display: none;

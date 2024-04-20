@@ -18,6 +18,7 @@ class Event(models.Model):
     COVER_CHARGE = (
         ('No', 'No'),
         ('Yes', 'Yes'),
+        ('N/A', 'N/A'),
     ) 
 
     cover_charge = models.CharField('cover charge?', null=True, max_length=16, default=None, choices=COVER_CHARGE)

@@ -1,5 +1,6 @@
 {% extends 'base_layout.html' %}
 {% block content %}
+
   {% if search_request %}
     {% for result in  search_results %}
       {% include 'components/cards/event_card.html' with event=result event_list='search-results' %}
@@ -31,8 +32,11 @@
     {% if mazie %}
       {% include 'components/buttons/anchor_button.html' with label='populate mazie' path_name='populate-mazie' button_variation='primary' %}
     {% endif %}
+    {% if icp %}
+      {% include 'components/buttons/anchor_button.html' with label='populate icp' path_name='populate-icp' button_variation='secondary' %}
+    {% endif %}
     {% if zincbar %}
-      {% include 'components/buttons/anchor_button.html' with label='populate zincbar' path_name='populate-zincbar' button_variation='secondary' %}
+      {% include 'components/buttons/anchor_button.html' with label='populate zincbar' path_name='populate-zincbar' button_variation='primary' %}
     {% endif %}
     {% for event in user_events %}
       {% include 'components/cards/event_card.html' with event=event event_list='user' %}

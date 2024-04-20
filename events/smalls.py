@@ -38,6 +38,8 @@ sets = {
 smallsURL = 'https://www.smallslive.com'
 
 def get_smalls(url):
+    """Get featured shows from the calendar slider on the smalls 
+    site and save them into Event instance"""
     r = requests.get(url)
     soup = BeautifulSoup(r.text, 'html.parser')
     upcoming_shows = soup.find_all('div', 'sub-info')

@@ -6,6 +6,7 @@ urlpatterns = [
   path('populate_vanguard/', views.populate, name='populate-vanguard'),
   path('populate_smalls/', views.populate, name='populate-smalls'),
   path('populate_mazie/', views.populate, name='populate-mazie'),
+  path('populate_icp/', views.populate, name='populate-icp'),
   path('populate_zincbar/', views.populate, name='populate-zincbar'),
   path('events_today/', views.event_list_today_view, name='event-list-today'),
   path('events_week/', views.event_list_week_view, name='event-list-week'),
