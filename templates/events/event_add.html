@@ -10,7 +10,9 @@
       {% include 'components/buttons/anchor_button.html' with label='populate mazie' path_name='populate-mazie' button_variation='primary' %}
   {% endif %}
   {% if icp %}
-      {% include 'components/buttons/anchor_button.html' with label='populate icp' path_name='populate-icp' button_variation='secondary' %}
+    {% include 'components/buttons/anchor_button.html' with label='populate icp' path_name='populate-icp' button_variation='secondary' %}
+  {% if zincbar %}
+    {% include 'components/buttons/anchor_button.html' with label='populate zincbar' path_name='populate-zincbar' button_variation='secondary' %}
   {% endif %}
   <div class="form-wrapper responsive">
     {% if user.is_authenticated %}

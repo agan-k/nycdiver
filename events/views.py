@@ -19,6 +19,7 @@ from .v_vanguard import (get_vanguard, vanguardURL)
 from .smalls import (get_smalls, smallsURL)
 from .mazie import (get_mazie, mazieURL)
 from .icp import (get_icp, icpURL)
+from .zincbar import (get_zincbar, zincbarURL)
 
 print(INITIAL_DATE_AND_TIME('time'))
 
@@ -37,6 +38,8 @@ def populate(request):
         return redirect('/')
     elif request.path == '/populate_icp/':
         get_icp(icpURL)
+    elif request.path == '/populate_zincbar/':
+        get_zincbar(zincbarURL)
         return redirect('/')
     
 
@@ -126,6 +129,7 @@ def event_list_user_view(request):
         context['smalls'] = '/populate_smalls'
         context['mazie'] = '/populate_mazie'
         context['icp'] = '/populate_icp'
+        context['zincbar'] = '/populate_zincbar'
     ATTACH_AUTH_MESSAGE(request, context)
     ATTACH_POSTED_MESSAGE(request, context)
 
@@ -151,6 +155,7 @@ def add_event(request):
         context['smalls'] = '/populate_smalls'
         context['mazie'] = '/populate_mazie'
         context['icp'] = '/populate_icp'
+        context['zincbar'] = '/populate_zincbar'
     if request.method == 'POST':
         event = Event(owner=request.user)
         form = EventForm(request.POST, instance=event)
