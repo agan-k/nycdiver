@@ -38,6 +38,7 @@ def populate(request):
         return redirect('/')
     elif request.path == '/populate_icp/':
         get_icp(icpURL)
+        return redirect('/')
     elif request.path == '/populate_zincbar/':
         get_zincbar(zincbarURL)
         return redirect('/')

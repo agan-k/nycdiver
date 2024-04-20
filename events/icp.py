@@ -46,18 +46,18 @@ def get_icp(url):
     driver = webdriver.Chrome(options=options)
     driver.get(url)
     # Click all the popups
-    cookies_popup = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'decline-cookies')))
+    cookies_popup = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.ID, 'decline-cookies')))
     if cookies_popup is not None:
         cookies_popup.click()
-    load_more_btn = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.ID, 'load_more')))
+    load_more_btn = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.ID, 'load_more')))
     load_more_btn.location_once_scrolled_into_view
-    modal_popup = WebDriverWait(driver, 20).until(EC.element_to_be_clickable((By.CLASS_NAME, 'mc-closeModal')))
+    modal_popup = WebDriverWait(driver, 5).until(EC.element_to_be_clickable((By.CLASS_NAME, 'mc-closeModal')))
     if modal_popup is not None:
         modal_popup.click()
     #Click 'View More' button for AJAX to bring in all the results
     load_more_btn.click()
     WebDriverWait(driver, 20).until(lambda driver: driver.execute_script("return jQuery.active == 0"))
-    list_results = WebDriverWait(driver, 20).until(EC.visibility_of_element_located((By.ID, 'listResults')))
+    list_results = WebDriverWait(driver, 5).until(EC.visibility_of_element_located((By.ID, 'listResults')))
     html = list_results.get_attribute('innerHTML')
     driver.quit()
     soup = BeautifulSoup(html, 'html.parser')
