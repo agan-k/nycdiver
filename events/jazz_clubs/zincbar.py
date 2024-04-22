@@ -1,6 +1,6 @@
 import requests
 from bs4 import BeautifulSoup
-from .models import Event
+from ..models import Event
 from datetime import datetime
 import datetime
 import datetime

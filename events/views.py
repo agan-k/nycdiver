@@ -15,10 +15,10 @@ from .manage_data import (
     TOGGLE_STAGE_USER_EVENT_DELETE,
     DELETE_STAGED_EVENTS,
 )
-from .v_vanguard import (get_vanguard, vanguardURL)
-from .smalls import (get_smalls, smallsURL)
-from .mazie import (get_mazie, mazieURL)
-from .zincbar import (get_zincbar, zincbarURL)
+from .jazz_clubs.v_vanguard import (get_vanguard, vanguardURL)
+from .jazz_clubs.smalls import (get_smalls, smallsURL)
+from .jazz_clubs.mazie import (get_mazie, mazieURL)
+from .jazz_clubs.zincbar import (get_zincbar, zincbarURL)
 
 print(INITIAL_DATE_AND_TIME('time'))
 
